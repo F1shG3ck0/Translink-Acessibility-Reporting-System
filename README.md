@@ -6,6 +6,23 @@ The system was designed to support the management and analysis of accessibility 
 
 ---
 
+## Running
+
+Requirements
+
+- Docker
+- Docker Compose
+
+Run:
+
+docker compose up
+
+The application will be available at:
+
+http://localhost:8080
+
+---
+
 # Project Features
 ## Database Design
 
