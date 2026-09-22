@@ -1,15 +1,26 @@
 # Translink-Acessibility-Reporting-System
 
 ## Overview
-This project was developed as part of the Data Driven Systems module at Queen's University Belfast.
+ 
+The Translink Accessibility Reporting System was developed as part of the Data Driven Systems module during the first year at Queen's University Belfast.
+ 
 The system was designed to support the management and analysis of accessibility information across a public transport network. It combines a relational database, web-based CRUD functionality, SQL reporting, and data visualisation to help identify accessibility trends and areas for improvement.
-
+ 
+---
+ 
+## Project Context
+ 
+This project was developed collaboratively within a team of five students.
+ 
+The system was designed to demonstrate database design principles, SQL reporting, data visualisation, and web-based database interaction. The **My Contributions** section outlines the components for which I was primarily responsible.
+ 
 ---
 
-## Running
-
-This repository contains the database scripts and web application components developed for the project. It is not intended to run as a standalone application and requires a suitable MySQL database environment for deployment.
-Show more lines
+## Running the Project
+ 
+This repository contains the database scripts and web application components developed for the project.
+ 
+The project is not intended to run as a standalone application and requires a suitable MySQL database environment for deployment.
 
 ---
 
@@ -44,71 +55,84 @@ Reports include:
 - Interactive data tables.
 - Accessibility dashboards.
 - Chart-based reporting using aggregated transport data.
+- Data summaries to support accessibility analysis.
 
 ---
 
 ## My Contributions
-I was responsible for several components of the project, including:
+I was responsible for several key components of the project.
 
 ### Database Development
-- Implemented tblTrip, tblOperator, and tblValidTicket.
+
+- Implemented `tblTrip`, `tblOperator`, and `tblValidTicket`.
 - Created database integrity constraints using ENUM values and composite keys.
 - Generated realistic test data for operators and trips.
+- Contributed to database validation and consistency requirements.
 
 ### CRUD Functionality
-Developed:
+
+Developed the following features using HTML, CSS, JavaScript, SQL, and database validation rules:
+
 - Create Stop
 - Create Route Stop
 - Update Stop
 - Delete Feature
 
-using HTML, JavaScript, SQL and database validation rules.
+### SQL Reporting
 
-###SQL Reporting
-Created reports answering:
+Created reports answering the following business questions:
 
 - How many transport routes include hospital-serving stops?
 - What accessibility-related features are available at each stop?
 - What percentage of vehicles provide wheelchair accessibility?
 
-using JOINs, aggregate functions and SQL views.
+Implemented these reports using:
+ 
+- SQL JOINs
+- Aggregate functions
+- Views
+- Filtering and grouping operations
 
 ### Front-End Development
 
-- Implemented website footer using HTML and CSS.
-- Developed interactive reporting pages and visualisations. 
+- Implemented the website footer using HTML and CSS.
+- Developed interactive reporting pages.
+- Created data visualisations using Chart.js.
 
 ---
 
 ## Technologies Used
-```text
-SQL
-MySQL
-HTML
-CSS
-JavaScript
-Chart.js
-Git
-GitHub
-```
+ 
+- MySQL
+- SQL
+- HTML
+- CSS
+- JavaScript
+- Chart.js
+- Git
+- GitHub
 
 ---
 
 ## Key Learning Outcomes
+
 Through this project I developed experience in:
+
 - Relational database design
 - Database normalisation
-- SQL reporting and analytics
 - Database constraints and integrity management
+- CRUD application development
+- SQL reporting and analytics
 - Data visualisation
-- Collaborative software development
-- Technical documentation and requirements analysis
+- Technical documentation
+- Requirements analysis
+- Collaborative software development using Git
 
 ---
 
-Repository Structure
-```text
+## Repository Structure
 
+```text
 database/
 ├── create_tables.sql
 ├── insert_test_data.sql
@@ -124,27 +148,60 @@ documentation/
 └── Work_Breakdown_Table.pdf
 
 screenshots/
-└── project-images
-
+├── er-diagram.png
+├── report-page.png
+├── chart-dashboard.png
+└── crud-page.png
 ```
+---
+
+## Project Outcome
+ 
+- Successfully developed a transport accessibility reporting system as part of a first-year university team project.
+- Implemented relational database design, CRUD functionality, SQL reporting, and data visualisation features.
+- Presented the completed solution to academic staff through video form.
+
+---
 
 ### Future Improvements
+
 - User authentication and role-based access control.
-- Enhanced reporting dashboard functionality.
-- Additional data visualisations.
+- Additional reporting dashboards.
+- More advanced data visualisations.
 - Integration with real-time transport datasets.
+- Export functionality for reports and analytics.
+- Mobile-responsive user interface improvements.
 
 --- 
 
 ## Screenshots
 
-ER Diagram:
-...
-report page:
-...
-chart:
-...
-CRUD page:
-...
+### Entity Relationship Diagram
+ 
+screenshots/er-diagram.png
 
-These massively improve recruiter engagement
+### Reporting Dashboard
+ 
+screenshots/report-page.png
+
+### Accessibility Analytics
+ 
+screenshots/chart-dashboard.png
+
+### CRUD Interface
+ 
+screenshots/crud-page.png
+ 
+---
+
+## Academic Note
+ 
+This project was completed as part of university coursework. The repository is intended to demonstrate database design, SQL development, reporting, data visualisation, and collaborative software development skills.
+
+---
+
+## Acknowledgements
+
+This project was developed collaboratively as part of a university group project. I would like to thank my fellow team members for their contributions to the design, development and testing of the system.
+
+by F1shG3ck0
