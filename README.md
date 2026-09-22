@@ -8,18 +8,8 @@ The system was designed to support the management and analysis of accessibility 
 
 ## Running
 
-Requirements
-
-- Docker
-- Docker Compose
-
-Run:
-
-docker compose up
-
-The application will be available at:
-
-http://localhost:8080
+This repository contains the database scripts and web application components developed for the project. It is not intended to run as a standalone application and requires a suitable MySQL database environment for deployment.
+Show more lines
 
 ---
 
