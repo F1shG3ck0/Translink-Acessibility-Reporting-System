@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Rosa - This page reports on wheel chair accessibility on the vehicles within our system. -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheelchair Accessible Vehicles</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    
+
+
+        <div class="main">
+            <div class = "reportHeader">
+                <h1>Vehicle Wheelchair Accessibility Coverage</h1>
+                <p><strong>Business Question:</strong> What percentage of vehicles provide wheelchair accessibility?</p>
+                <p><strong>Why this report is useful:</strong> Helps assess accessibility provision across the transport fleet.</p>
+                <p><strong>Wheelchair accessibility definition:</strong> A vehicle is classified as wheelchair accessible only if it has both a boarding aid (such as ramps or ramp pathways) and a designated wheelchair space.</p>
+                <p><strong id="totalFeatures">features...: </strong></p>
+                <hr>
+            </div>
+        
+            <!--What features count has wheelchair accessibility?
+            “A vehicle is classified as wheelchair accessible only if it has both a boarding aid (such as ramps or ramp pathways) and a designated wheelchair space.”
+            A vehicle is considered wheelchair accessible only if it provides both boarding access and designated onboard accommodation.
+            “Wheelchair accessibility is defined based on the presence of one or more accessibility‑related features. This approach allows additional accessibility features to be added in future without changes to the database schema or reports.”
+            //Ramps
+            //Wheelchair Space
+            //Elevator Access - Stop Feature
+            //Disabled Toilets - Stop Feature
+            //Ramp Pathway - Stop Feature -->
+            <div class="reportContent">
+                <div class="reportSection" id="accessibilityNumSection">
+                    <h2>What percentage of vehicles in the fleet are wheelchair accessible?</h2>
+                    <br>
+                    <canvas id="accessibilityNumChart" width="1" height="1"></canvas>
+                </div>
+
+                <!-- //Use database enum for vehicle types
+                //percentages -->
+                <div class="reportSection" id="accessibilityTypeSection">
+                    <h2>Which vehicle types provide the highest and lowest levels of wheelchair accessibility?</h2>
+                    <br>
+                    <canvas id="accessibilityTypeChart" width="400" height="400"></canvas>
+                    <br>
+                    <p>Partial accessibility indicates the presence of either a boarding access or onboard accommodation, but not both.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+           
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg" alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg" alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo" width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg" alt="WhatsApp logo" width="17"></a>
+                </div>
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/createScript.js"></script>
+
+    <script>//Total number of vehicle feaatures
+
+        //Colours
+        const ACCESSIBILITY_COLOURS = {
+            "Boarding & Onboard Access": "#0F6F74",   // Translink teal (strong, primary)
+            "Boarding Access Only": "#1F8FA3",        // turquoise
+            "Onboard Accommodation Only": "#A4C639", // neon Translink green
+            "No Accessibility Features": "#8FA3A8"   // neutral grey (only true neutral) - emphasise area of gap
+
+        };   
+
+
+        const loadFeatureCount = async () => {
+            const sql = `SELECT COUNT(*) AS totalFeatures
+                FROM tblFeature
+                WHERE featureCategory = 'Vehicle';
+            `;
+
+            const result = await runQuery(sql.trim());
+
+            document.getElementById("totalFeatures").textContent = `Number of Vehicle features in total: ${result.data[0].totalFeatures}`;
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadFeatureCount();
+        });
+
+    </script>
+
+    <script>//Script for finding accessible vehicles
+    const loadAccessibilityChart = async () => {
+        //SQL QUERY
+        const sql = `SELECT
+            accessibilityStatus,
+            COUNT(*) AS vehicleCount
+            FROM vw_vehicle_accessibility
+            GROUP BY accessibilityStatus;`;
+        
+        const result = await runQuery(sql.trim());
+        //console.log("Query result:", result);
+
+        createDoughnutChart(result.data);
+
+    };
+    
+    const createDoughnutChart = (data) => {
+        const labels = [];
+        const values = [];
+        const colours = [];
+
+        
+        data.forEach(row => {
+            labels.push(row.accessibilityStatus);
+            values.push(row.vehicleCount);
+            colours.push(ACCESSIBILITY_COLOURS[row.accessibilityStatus]);
+        });
+
+
+        drawChart(labels, values, colours);
+    };
+
+    
+    const drawChart = (labels, values, colours) => {
+        const ctx = document.getElementById("accessibilityNumChart").getContext("2d");
+
+        new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: values,
+                    backgroundColor: colours,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Vehicle Wheelchair Accessibility Provision"
+                    },
+                    legend: {
+                        position: "bottom"
+                    }
+                }
+            }
+        });
+    };
+    document.addEventListener("DOMContentLoaded", () => {
+        loadAccessibilityChart();
+    });
+                        
+    </script>
+<!--Vehicle accessibility is calculated per vehicle and then aggregated by vehicle type to allow fair percentage‑based comparison across different fleet sizes.-->
+    <script>//Script for finding accessible vehicles types
+    const loadAccessibilityTypeChart = async () => {
+        //SQL QUERY
+        const sql = `SELECT vehicleType,
+            COUNT(*) AS totalVehicles,
+            
+            SUM(accessibilityStatus = 'Boarding & Onboard Access'
+                COLLATE utf8mb4_unicode_ci) AS fullyAccessible,
+
+            SUM(accessibilityStatus = 'Boarding Access Only'
+                COLLATE utf8mb4_unicode_ci)
+                + 
+            SUM(accessibilityStatus = 'Onboard Accommodation Only'
+                COLLATE utf8mb4_unicode_ci)
+            AS partiallyAccessible,
+
+            SUM(accessibilityStatus = 'No Accessibility Features'
+                COLLATE utf8mb4_unicode_ci) AS notAccessible
+
+            FROM vw_vehicle_accessibility
+            GROUP BY vehicleType
+            ORDER BY vehicleType;`;
+        
+        const result = await runQuery(sql.trim());
+        //console.log("Query result:", result);
+
+        createStackedBarChart(result.data);
+
+    };
+    
+    const createStackedBarChart = (data) => {
+        const labels = [];
+
+        const fully = [];
+        const partial = [];
+        const none = [];
+
+        const tooltipData = [];
+        
+
+
+        data.forEach((row, index) => {
+            labels.push(row.vehicleType);
+            fully.push((row.fullyAccessible / row.totalVehicles) * 100);
+            partial.push((row.partiallyAccessible / row.totalVehicles) * 100);
+            none.push((row.notAccessible / row.totalVehicles) * 100);
+            tooltipData.push(row);
+        });
+
+        drawBarChart(labels, fully, partial, none, tooltipData);
+    };
+
+    
+    const drawBarChart = (labels, fully, partial, none, tooltipData) => {
+        const ctx = document.getElementById("accessibilityTypeChart").getContext("2d");
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Fully Accessible",
+                    data: fully,
+                    backgroundColor: "#006B6F" // teal
+                },
+                {
+                    label: "Partially Accessible",
+                    data: partial,
+                    backgroundColor: "#1F8FA3" // turquoise
+                },
+                {
+                    label: "Not Accessible",
+                    data: none,
+                    backgroundColor: "#A4C639" // neon green
+                }]
+            },
+            options: {
+                scales:{
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: "% of Vehicles"
+                        }
+                    }
+                },
+            plugins:{
+                legend: {display: false},
+                tooltip:{
+                    callbacks: {
+                        label: (context) => {
+                            const row = tooltipData[context.dataIndex];
+                            
+                            if (!row) return "";
+                            
+                            let count;
+                            
+                            if (context.dataset.label === "Fully Accessible") {
+                                count = row.fullyAccessible;
+                            } else if (context.dataset.label === "Partially Accessible") {
+                                count = row.partiallyAccessible;
+                            } else {
+                                count = row.notAccessible;
+                            };
+
+                            const percent = context.raw.toFixed(1);
+
+                            return `${context.dataset.label}: ${percent}% (${count} of ${row.totalVehicles} vehicles)`;
+
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: "Wheelchair Accessibility by Vehicle Type"
+                }
+            }
+        }
+    });
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        loadAccessibilityTypeChart();
+    });
+                        
+    </script>
+
+</body>
+
+</html>

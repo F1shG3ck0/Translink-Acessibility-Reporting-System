@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Rosa - This page allows the user to update a stop in the database. -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Stop</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    
+        <div class="main">
+            <h2>Update a Stop</h2>
+            <p>The table below shows all stops in the database. Click the update button to modify a stop's information (Name, Type).
+            </p>
+            <br>
+            <hr>
+            <br>
+            <!-- JavaScript builds the table and inserts it into this empty div. -->
+            <div id="tableOutput"></div>
+            <br>
+            <hr>
+            <br>
+
+            <h2>Edit Selected Record</h2>
+            <!-- This text reminds the user which student is currently loaded into the form. -->
+            <p id="selectedStopText" class="muted">Choose a stop from the table first.</p>
+
+            <!-- The form is filled in automatically when the user clicks an Edit button. -->
+            <form id="editForm">
+                <div class="form-row">
+                    <label for="stopName">Stop Name</label>
+                    <input type="text" id="stopName">
+                </div>
+
+                <div class="form-row">
+                    <label for="stopType">Stop Type</label>
+                    <select name="stopType" id="stopType">
+                        <option disabled selected value> -- select an option -- </option>
+                        <option value="Bus Stop">Bus Stop</option>
+                        <option value="Train Station">Train Station</option>
+                        <option value="Bus & Train Station">Bus & Train Station</option>
+                        <option value="Buscentre">Buscentre</option>
+                    </select>
+                    <br>
+                    <input type="text" value="stopType" hidden>
+                </div>
+
+                <button type="submit">Update Record</button>
+            </form>
+            <!-- Success or error messages are shown here. -->
+            <div id="output" class="output"></div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+           
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg" alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg" alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo" width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg" alt="WhatsApp logo" width="17"></a>
+                </div>
+                    <div class="footer__slogan">
+                        <span class="footer__slogan-title">Better Connected</span>
+                        <span>Accessible, Inclusive and Green</span>
+                    </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+    <script src="js/createScript.js"></script>
+    <script>
+        // This remembers which record was chosen from the table.
+        let selectedStop = null;
+        let currentPage = 1;
+        let rowsPerPage = 25;
+        let allStops = [];
+
+        // Show a success or error message below the form.
+        //now in the JS file to avoid repetition across pages
+        /*
+        const showMessage = (text, type) => {
+            const output = document.querySelector("#output");
+            output.textContent = text;
+            output.className = `message ${type}`;
+            output.style.display = "block";
+            
+            if (output.timeoutId) {
+                clearTimeout(output.timeoutId);
+            }
+            output.timeoutId = setTimeout(() => {
+                output.style.display = "none";
+                output.className = "message";
+            }, 6000);
+        };*/
+
+        // clear any old messages so the page does not show stale feedback.
+        const clearMessage = () => {
+            const output = document.querySelector("#output");
+            output.textContent = "";
+            output.className = "message";
+        };
+
+        // Put the form back into its starting state.
+        const resetForm = () => {
+            const form = document.querySelector("#editForm");
+            const selectedStopText = document.querySelector("#selectedStopText");
+            
+            form.reset();
+            selectedStop = null;
+            selectedStopText.textContent = "Choose a stop from the table first.";
+        };
+
+        //copy the chosen record's values into the form so the user can edit them.
+        const selectStop = (stop) => {
+            const selectedStopText = document.querySelector("#selectedStopText");
+
+            selectedStop = Number(stop.stopId);
+            document.querySelector("#stopName").value = stop.stopName;
+            document.querySelector("#stopType").value = stop.stopType;
+            selectedStopText.textContent = `Editing Stop ID ${stop.stopId}`;
+            clearMessage();
+        };
+
+        // load all stops from the database and display them in a table.
+        const printTable = async () => {
+            const output = document.querySelector("#tableOutput");
+            output.textContent = "";
+
+            // read every row so the user can choose one to edit.
+            const sql = "SELECT * FROM tblStop ORDER BY stopId;";
+            const result = await runQuery(sql);
+            
+            if (!result || !result.data || result.data.length === 0) {
+                output.textContent = "No Rows Returned";
+                return;
+            }
+
+            allStops = result.data;
+            currentPage = 1;
+
+            renderTablePage();
+        };
+        const renderTablePage = () => {
+            const output = document.querySelector("#tableOutput");
+            output.innerHTML = "";
+
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+
+            const pageData = allStops.slice(start, end);
+
+            //create table to filll with data from the database.
+            const rows = pageData;
+            const table = document.createElement("table");
+            const headerRow = document.createElement("tr");
+            table.appendChild(headerRow);
+
+            // Create the table headings once before the stop rows are added.
+            const headings = ["Stop ID", "Stop Name", "Stop Type", "Action"];
+
+            for (let heading of headings) {
+                const th = document.createElement("th");
+                th.textContent = heading;
+                headerRow.appendChild(th);
+            }
+
+            for (let row of rows) {
+                const tr = document.createElement("tr");
+
+                const tdStopId = document.createElement("td");
+                tdStopId.textContent = row.stopId;
+                tr.appendChild(tdStopId);
+
+                const tdStopName = document.createElement("td");
+                tdStopName.textContent = row.stopName;
+                tr.appendChild(tdStopName);
+
+                const tdStopType = document.createElement("td");
+                tdStopType.textContent = row.stopType;
+                tr.appendChild(tdStopType);
+
+                const tdEdit = document.createElement("td");
+                const editButton = document.createElement("button");
+                editButton.textContent = "Edit";
+
+                editButton.addEventListener("click", async () => {
+                    selectStop(row);
+                    
+                    //deactivate the irrelevant dropdown options.
+                    let sql = `SELECT routeName FROM tblRoute r JOIN tblRouteStop rs ON r.routeId = rs.routeId WHERE rs.stopId = ${row.stopId};`.trim();
+                    const result = await runQuery(sql);
+                    const routeNames = result.data.map(r => r.routeName.toLowerCase());
+
+                    //check for type of routes
+                    const hasTrainRoutes = routeNames.some(name => name.includes("line"));
+                    const hasBusRoutes = routeNames.some(name => !name.includes("line"));
+                    
+                    //console.log(routeNames, hasTrainRoutes, hasBusRoutes);
+                    //reset deactivation
+                    resetStopTypeOptions();
+
+                    if (hasTrainRoutes && hasBusRoutes){
+                        document.querySelector("#stopType").querySelector('option[value="Bus Stop"]').disabled = true;
+                        document.querySelector("#stopType").querySelector('option[value="Train Station"]').disabled = true;
+                        document.querySelector("#stopType").querySelector('option[value="Buscentre"]').disabled = true;
+                    } else if (hasTrainRoutes){
+                        document.querySelector("#stopType").querySelector('option[value="Bus Stop"]').disabled = true;
+                        document.querySelector("#stopType").querySelector('option[value="Buscentre"]').disabled = true;
+                    } else if (hasBusRoutes){
+                        document.querySelector("#stopType").querySelector('option[value="Train Station"]').disabled = true;
+                    };
+                    // go to the form when the user clicks edit so they do not have to scroll down manually.
+                    document.querySelector("#editForm").scrollIntoView();
+                });
+
+                tdEdit.appendChild(editButton);
+                tr.appendChild(tdEdit);
+                table.appendChild(tr);
+            }
+
+            output.appendChild(table);
+
+            renderPaginationControls();
+        };
+
+        const renderPaginationControls = () => {
+            const output = document.querySelector("#tableOutput");
+
+            const totalPages = Math.ceil(allStops.length / rowsPerPage);
+
+            const container = document.createElement("div");
+            container.style.marginTop = "15px";
+            container.style.display = "flex";
+            container.style.justifyContent = "center";
+            container.style.alignItems = "center";
+            container.style.gap = "12px";
+
+            const prevBtn = document.createElement("button");
+            prevBtn.textContent = "Previous";
+            prevBtn.disabled = currentPage === 1;
+
+            prevBtn.addEventListener("click", () => {
+                currentPage--;
+                renderTablePage();
+            });
+
+            const nextBtn = document.createElement("button");
+            nextBtn.textContent = "Next";
+            nextBtn.disabled = currentPage === totalPages;
+
+            nextBtn.addEventListener("click", () => {
+                currentPage++;
+                renderTablePage();
+            });
+
+            const pageInfo = document.createElement("span");
+            pageInfo.textContent = ` Page ${currentPage} of ${totalPages} `;
+
+            container.appendChild(prevBtn);
+            container.appendChild(pageInfo);
+            container.appendChild(nextBtn);
+
+            output.appendChild(container);
+        };
+        
+        function resetStopTypeOptions() {
+            document.querySelectorAll("#stopType option").forEach(option => option.disabled = false);
+        }
+
+        // Set up the page when the browser has finished loading the HTML.
+        document.addEventListener("DOMContentLoaded", () => {
+            resetForm();
+            printTable();
+        });
+
+        // Update the chosen stop when the form is submitted.
+        document.querySelector("#editForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            if (selectedStop === null) {
+                showMessage("Choose a stop from the table before updating.", "error");
+            return;
+            }
+            //console.log("Updating stop with ID:", selectedStop);
+            const stop = {
+                stopId: selectedStop,
+                stopName: document.querySelector("#stopName").value.trim(),
+                stopType: document.querySelector("#stopType").value.trim()
+            };
+
+            // Reuse the same validation rules as the add-record page.
+            const validationMessage = validateStop(stop);
+            if (validationMessage) {
+                showMessage(validationMessage, "error");
+                return;
+            }
+
+            const sql = `UPDATE tblStop SET
+                    stopId = ${stop.stopId},
+                    stopName = '${escapeSql(stop.stopName)}',
+                    stopType = '${escapeSql(stop.stopType)}'
+                WHERE stopId = ${selectedStop};
+            `;
+
+            // console.log(sql);
+
+            const result = await runQuery(sql);
+
+            if (result && result.success) {
+                showMessage("Stop record updated successfully.", "success");
+                resetForm();
+                printTable();
+                return;
+            }
+    
+            if (result && result.error) {
+                showMessage(result.error, "error");
+            } else {
+                showMessage("Unable to update the record.", "error");
+            }      
+      
+
+        });
+    </script>
+</body>
+
+</html>

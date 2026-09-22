@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Stop Feature</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility
+                            Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <h2>Add a Feature to a Stop</h2>
+            <p>Enter the values below and click the button to add a feature to a stop.</p>
+            <br>
+            <hr>
+
+            <!-- search bar for selecting a stop to add a feature to -->
+            <form id="addStopFeatureForm">
+                <div class="form-row">
+                    <label for="stopSearch">Stop</label>
+                    <div class="input-wrapper">
+                        <div class="input-anchor">
+                            <input type="text" id="stopSearch" placeholder="Search stop..." autocomplete="off">
+                            <div id="stopResults" class="dropdown-results"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="stopId">
+                </div>
+
+                <!-- search bar for selecting a feature to add to the stop -->
+                <div class="form-row">
+                    <label for="featureSearch">Feature</label>
+                    <div class="input-wrapper">
+                        <div class="input-anchor">
+                            <input type="text" id="featureSearch" placeholder="Search feature..." autocomplete="off">
+                            <div id="featureResults" class="dropdown-results"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="featureId">
+                </div>
+                <br>
+
+                <!-- submit button -->
+                <button type="submit">Add Feature</button>
+            </form>
+
+            <!-- success/error message box. -->
+            <div id="output" class="message"></div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer__top">
+            <div class="footer__brand">
+                <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+            </div>
+
+            <div class="footer__social" aria-label="Social media links">
+                <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg"
+                        alt="Facebook logo" width="17"></a>
+                <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg"
+                        alt="Instagram logo" width="17"></a>
+                <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo"
+                        width="17"></a>
+                <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg"
+                        alt="WhatsApp logo" width="17"></a>
+            </div>
+            <div class="footer__slogan">
+                <span class="footer__slogan-title">Better Connected</span>
+                <span>Accessible, Inclusive and Green</span>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>@2026 Translink</p>
+        </div>
+    </footer>
+
+    <!-- linking js for validation, loading data, and linking to database-->
+    <script src="js/createScript.js"></script>
+    <script>
+        // creates autocomplete for the search bars.
+        const setupAutocomplete = (inputId, resultsId, searchType) => {
+            const input = document.getElementById(inputId);
+            const resultsContainer = document.getElementById(resultsId);
+
+            const performSearch = async () => {
+
+                const query = input.value.trim();
+                document.getElementById(`${searchType}Id`).value = "";
+
+                let sql = "";
+
+                // fetches data from stop or feature based on the user's input.
+                if (searchType === "stop") {
+                    const filter = query ? `WHERE stopName LIKE '${escapeSql(query)}%'` : "";
+                    sql = `SELECT stopId, stopName FROM tblStop ${filter}`;
+                }
+                else if (searchType === "feature") {
+                    const filter = query ? `WHERE featureName LIKE '${escapeSql(query)}%'` : "";
+                    sql = `SELECT featureId, featureName 
+                       FROM tblFeature 
+                       WHERE featureCategory = 'Stop'
+                       ${query ? `AND featureName LIKE '${escapeSql(query)}%'` : ""}`;
+                }
+
+                // runs the query and displays the results in a dropdown below the search bar.
+                const results = await runQuery(sql);
+
+                //displays results or an error message in the dropdown
+                if (results && results.data && results.data.length > 0) {
+                    resultsContainer.innerHTML = results.data.map(result => {
+                        if (searchType === "stop") {
+                            return `<div class="dropdown-result" data-id="${result.stopId}">
+                                    ${result.stopName}
+                                </div>`;
+                        } else {
+                            return `<div class="dropdown-result" data-id="${result.featureId}">
+                                    ${result.featureName}
+                                </div>`;
+                        }
+                    }).join("");
+
+                    // populates the search bar with a result when the user clicks on one of the dropdown options.
+                    resultsContainer.querySelectorAll(".dropdown-result").forEach(item => {
+                        item.addEventListener("click", (e) => {
+                            e.stopPropagation();
+                            input.value = item.textContent.trim();
+                            document.getElementById(`${searchType}Id`).value = item.getAttribute("data-id");
+                            resultsContainer.innerHTML = "";
+                        });
+                    });
+
+                } else {
+                    resultsContainer.innerHTML = "<div class='dropdown-no-results'>No results found</div>";
+                }
+            };
+
+            input.addEventListener("input", performSearch);
+
+            input.addEventListener("focus", () => {
+                input.value = "";
+                document.getElementById(`${searchType}Id`).value = "";
+                performSearch();
+            });
+
+            input.addEventListener("blur", () => {
+                setTimeout(() => { resultsContainer.innerHTML = ""; }, 200);
+            });
+        };
+
+        // validates user input before it's sent to the database.
+        document.querySelector("#addStopFeatureForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const stopFeature = {
+                stopId: Number(document.querySelector("#stopId").value),
+                featureId: Number(document.querySelector("#featureId").value)
+            };
+
+            const validationMessage = await validateStopFeature(stopFeature);
+            if (validationMessage) {
+                showMessage(validationMessage, "error");
+                return;
+            }
+
+            const sql = `
+            INSERT INTO tblStopFeature (stopId, featureId)
+            VALUES (${stopFeature.stopId}, ${stopFeature.featureId});
+        `;
+
+            const result = await runQuery(sql);
+
+            // displays messages depending wether creation was successful or not and specifically handles duplicate entries.
+            if (result && result.success) {
+                showMessage("Feature added to stop successfully.", "success");
+                document.querySelector("#addStopFeatureForm").reset();
+            } else {
+                if (result?.error?.includes("Duplicate entry")) {
+                    showMessage("This stop already has that feature.", "error");
+                } else {
+                    showMessage("Unable to add the feature. Please try again.", "error");
+                }
+            }
+
+        });
+
+        // initializes the autocomplete functionality for the search bars once the page has loaded.
+        document.addEventListener("DOMContentLoaded", () => {
+            setupAutocomplete("stopSearch", "stopResults", "stop");
+            setupAutocomplete("featureSearch", "featureResults", "feature");
+        });
+    </script>
+
+</body>
+
+</html>

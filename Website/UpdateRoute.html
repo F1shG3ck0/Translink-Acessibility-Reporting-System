@@ -1,0 +1,436 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Route</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility
+                            Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main">
+            <h2 class ="table-title">Update Route Records</h2>
+            <p>The table below shows all routes in the database. Click <strong>EDIT</strong> to load in the selected route for updating.</p>
+            
+            <br>
+            <hr>
+
+            <div id="tableOutput"></div>
+            <br>
+            <hr>
+
+            <h2 class="table-title" id="editSection">Edit Route</h2>
+            <!-- reminder for the what route is currently loaded into form-->
+            <p id="selectedRouteText" class="muted">
+                Choose a route from the table first
+            </p>
+
+            <!-- form is filled in with record details when user selects corresponding edit-->
+            <form id="editForm">
+
+                <div class="form-row">
+                    <label for="routeName">Route Name</label>
+                    <input type="text" id="routeName" />
+                </div>
+
+                <div class="form-row">
+                    <label for="startLocation">Start Location</label>
+                    <input type="text" id="startLocation" />
+                </div>
+
+                <div class="form-row">
+                    <label for="endLocation">End Location</label>
+                    <input type="text" id="endLocation" />
+                </div>
+
+                <button type="submit">Update Route</button>
+
+            </form>
+            <!-- Messages about validation or database results appear here. -->
+            <div id="output" class="message"></div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg"
+                            alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg"
+                            alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo"
+                            width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg"
+                            alt="WhatsApp logo" width="17"></a>
+                </div>
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/createScript.js"></script>
+   <script>
+    let currentPage = 1;
+    const rowsPerPage = 25;
+    let allRoutes = [];
+    let selectedRouteId = null;
+    let originalRoute = null;
+
+    const resetForm = () => {
+        document.getElementById("editForm").reset();
+        selectedRouteId = null;
+        originalRoute = null;
+        document.getElementById("selectedRouteText").textContent =
+            "Choose a route from the table first";
+    };
+
+    const selectRoute = (route) => {
+        selectedRouteId = Number(route.routeId);
+
+        originalRoute = {
+            routeId: Number(route.routeId),
+            routeName: route.routeName,
+            startLocation: route.startLocation,
+            endLocation: route.endLocation
+        };
+
+        document.querySelector("#routeName").value = route.routeName || "";
+        document.querySelector("#startLocation").value = route.startLocation || "";
+        document.querySelector("#endLocation").value = route.endLocation || "";
+
+        document.querySelector("#selectedRouteText").textContent =
+            `Editing: ${route.routeName}`;
+
+        document.getElementById("editSection").scrollIntoView({
+            behavior: "smooth"
+        });
+    };
+
+    const renderTablePage = () => {
+        const output = document.querySelector("#tableOutput");
+        output.innerHTML = "";
+
+        if (!allRoutes || allRoutes.length === 0) {
+            output.textContent = "No routes found";
+            return;
+        }
+
+        const totalPages = Math.ceil(allRoutes.length / rowsPerPage);
+
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        const pageRoutes = allRoutes.slice(startIndex, endIndex);
+
+        const table = document.createElement("table");
+
+        const header = document.createElement("tr");
+        ["Route Name", "Start", "End", "Action"].forEach((heading) => {
+            const th = document.createElement("th");
+            th.textContent = heading;
+            header.appendChild(th);
+        });
+        table.appendChild(header);
+
+        pageRoutes.forEach((route) => {
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${route.routeName ?? ""}</td>
+                <td>${route.startLocation ?? ""}</td>
+                <td>${route.endLocation ?? ""}</td>
+            `;
+
+            const td = document.createElement("td");
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = "Edit";
+            btn.addEventListener("click", () => selectRoute(route));
+
+            td.appendChild(btn);
+            tr.appendChild(td);
+            table.appendChild(tr);
+        });
+
+        output.appendChild(table);
+
+        const paginationDiv = document.createElement("div");
+        paginationDiv.style.marginTop = "15px";
+        paginationDiv.style.display = "flex";
+        paginationDiv.style.justifyContent = "center";
+        paginationDiv.style.alignItems = "center";
+        paginationDiv.style.gap = "12px";
+
+        const prevBtn = document.createElement("button");
+        prevBtn.type = "button";
+        prevBtn.textContent = "Previous";
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.addEventListener("click", () => {
+            currentPage--;
+            renderTablePage();
+        });
+
+        const pageInfo = document.createElement("span");
+        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+
+        const nextBtn = document.createElement("button");
+        nextBtn.type = "button";
+        nextBtn.textContent = "Next";
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.addEventListener("click", () => {
+            currentPage++;
+            renderTablePage();
+        });
+
+        paginationDiv.appendChild(prevBtn);
+        paginationDiv.appendChild(pageInfo);
+        paginationDiv.appendChild(nextBtn);
+
+        output.appendChild(paginationDiv);
+    };
+
+    const printTable = async () => {
+        const result = await runQuery("SELECT * FROM tblRoute ORDER BY routeName ASC;");
+        console.log("printTable result:", result);
+
+        const rows = result?.data || result || [];
+
+        if (!rows || rows.length === 0) {
+            document.querySelector("#tableOutput").textContent = "No routes found";
+            return;
+        }
+
+        allRoutes = rows;
+        currentPage = 1;
+        renderTablePage();
+    };
+
+    document.querySelector("#editForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        try {
+            if (selectedRouteId == null || !originalRoute) {
+                showMessage("No route selected.", "error");
+                return;
+            }
+
+            const route = {
+                routeId: Number(selectedRouteId),
+                routeName: document.querySelector("#routeName").value.trim(),
+                startLocation: document.querySelector("#startLocation").value.trim(),
+                endLocation: document.querySelector("#endLocation").value.trim()
+            };
+
+            const validation = validateRoute(route);
+            if (validation) {
+                showMessage(validation, "error");
+                return;
+            }
+
+            // check duplicate main route
+            const duplicateCheck = await runQuery(`
+                SELECT *
+                FROM tblRoute
+                WHERE TRIM(LOWER(routeName)) = TRIM(LOWER('${escapeSql(route.routeName)}'))
+                AND TRIM(LOWER(startLocation)) = TRIM(LOWER('${escapeSql(route.startLocation)}'))
+                AND TRIM(LOWER(endLocation)) = TRIM(LOWER('${escapeSql(route.endLocation)}'))
+                AND routeId != ${route.routeId};
+            `);
+
+            const duplicateRows = duplicateCheck?.data || duplicateCheck || [];
+            console.log("duplicateRows:", duplicateRows);
+
+            if (duplicateRows.length > 0) {
+                showMessage("Another route already exists with the same name, start and end location.", "error");
+                return;
+            }
+
+            // find reverse route using ORIGINAL values
+            const reverseResult = await runQuery(`
+                SELECT *
+                FROM tblRoute
+                WHERE TRIM(LOWER(startLocation)) = TRIM(LOWER('${escapeSql(originalRoute.endLocation)}'))
+                AND TRIM(LOWER(endLocation)) = TRIM(LOWER('${escapeSql(originalRoute.startLocation)}'))
+                AND routeId != ${route.routeId};
+            `);
+
+            const reverseRows = reverseResult?.data || reverseResult || [];
+            console.log("originalRoute:", originalRoute);
+            console.log("reverseResult:", reverseResult);
+            console.log("reverseRows:", reverseRows);
+
+            // if reverse route exists, make sure updated reverse won't duplicate another route
+            if (reverseRows.length > 0) {
+                const reverseRoute = reverseRows[0];
+
+                const reverseDuplicateCheck = await runQuery(`
+                    SELECT *
+                    FROM tblRoute
+                    WHERE TRIM(LOWER(routeName)) = TRIM(LOWER('${escapeSql(route.routeName)}'))
+                    AND TRIM(LOWER(startLocation)) = TRIM(LOWER('${escapeSql(route.endLocation)}'))
+                    AND TRIM(LOWER(endLocation)) = TRIM(LOWER('${escapeSql(route.startLocation)}'))
+                    AND routeId != ${route.routeId}
+                    AND routeId != ${Number(reverseRoute.routeId)};
+                `);
+
+                const reverseDuplicateRows = reverseDuplicateCheck?.data || reverseDuplicateCheck || [];
+                console.log("reverseDuplicateRows:", reverseDuplicateRows);
+
+                if (reverseDuplicateRows.length > 0) {
+                    showMessage("Cannot update because another return journey already exists with these details.", "error");
+                    return;
+                }
+            }
+
+            // update selected route
+            const updateResult = await runQuery(`
+                UPDATE tblRoute
+                SET
+                    routeName = '${escapeSql(route.routeName)}',
+                    startLocation = '${escapeSql(route.startLocation)}',
+                    endLocation = '${escapeSql(route.endLocation)}'
+                WHERE routeId = ${route.routeId};
+            `);
+
+            console.log("main update result:", updateResult);
+
+            if (!updateResult || updateResult.error) {
+                showMessage("Error updating main route.", "error");
+                return;
+            }
+
+            // update reverse route too if found
+            if (reverseRows.length > 0) {
+                const reverseRoute = reverseRows[0];
+
+                const reverseUpdateResult = await runQuery(`
+                    UPDATE tblRoute
+                    SET
+                        routeName = '${escapeSql(route.routeName)}',
+                        startLocation = '${escapeSql(route.endLocation)}',
+                        endLocation = '${escapeSql(route.startLocation)}'
+                    WHERE routeId = ${Number(reverseRoute.routeId)};
+                `);
+
+                console.log("reverse route being updated:", reverseRoute);
+                console.log("reverse update result:", reverseUpdateResult);
+
+                if (!reverseUpdateResult || reverseUpdateResult.error) {
+                    showMessage("Main route updated, but reverse route failed to update.", "error");
+                    return;
+                }
+            }
+
+            showMessage("Route updated successfully.", "success");
+            resetForm();
+            await printTable();
+
+        } catch (err) {
+            console.error(err);
+            showMessage("Update failed: " + err.message, "error");
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", printTable);
+</script>
+</body>
+
+</html>

@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png" />
+    <title>Vulnerable Passengers Report</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="banner">
+        <img src="Images/logo.jpg" class="logo" />
+
+        <nav class="nav">
+          <div class="dropdown">
+            <button class="dropbtn">Add Records</button>
+            <div class="dropdown-content">
+              <a href="CreateRoute.html">Add Route</a>
+              <a href="CreateStop.html">Add Stop</a>
+              <a href="CreateFeature.html">Add Feature</a>
+              <a href="CreateVehicle.html">Add Vehicle</a>
+              <a href="CreateTrip.html">Add Trip</a>
+              <a href="CreateOperator.html">Add Operator</a>
+              <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+              <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+              <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Update Records</button>
+            <div class="dropdown-content">
+              <a href="UpdateTrip.html">Update Trip</a>
+              <a href="UpdateRoute.html">Update Route</a>
+              <a href="UpdateStop.html">Update Stop</a>
+              <a href="UpdateComplaint.html">Update Complaint</a>
+              <a href="UpdateOperator.html">Update Operator</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Delete Records</button>
+            <div class="dropdown-content">
+              <a href="DeleteFeature.html">Delete Feature</a>
+              <a href="DeleteComplaint.html">Delete Complaint</a>
+              <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+              <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+              <a href="DeleteVehicleFeature.html"
+                >Delete Feature from Vehicle</a
+              >
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Complaint Reports</button>
+            <div class="dropdown-content">
+              <a href="ReportResolvedComplaintsOverTime.html"
+                >Resolved Complaints Over Time</a
+              >
+              <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html"
+                >Routes With Most Complaints</a
+              >
+              <a href="ReportVehicleAccessibilityComplaints.html"
+                >Vehicles With Most Complaints</a
+              >
+              <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+              <a href="ReportPriorityAccessibilityStops.html"
+                >Prioritised Stops for Accessibility Improvement</a
+              >
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Feature Reports</button>
+            <div class="dropdown-content">
+              <a href="ReportVehicleFeatures.html"
+                >Features Available On Each Vehicle</a
+              >
+              <a href="Rosa_StopFeatures.html"
+                >Features Available At Each Stop</a
+              >
+              <a href="ReportStopVisualAccessibility.html"
+                >Visually Accessible Stops</a
+              >
+              <a href="Rosa_WheelAccessiblePerecentage.html"
+                >Wheelchair Accessible Vehicles</a
+              >
+              <a href="Lucia_StopsWithoutAccessibleFeatures.html"
+                >Least Available Features At Stops</a
+              >
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Routes And Stops Reports</button>
+            <div class="dropdown-content">
+              <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+              <a href="ReportAccessibleRoutes.html"
+                >Routes With Accessible Stops</a
+              >
+              <a href="ReportAccessibleStops.html"
+                >Stops With Accessiblility Features</a
+              >
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Vulnerable Passenger Reports</button>
+            <div class="dropdown-content">
+              <a href="Lucia_ReportVulnerablePassengers.html"
+                >Travel Trends For Vulnerable Passengers</a
+              >
+              <a href="ReportRouteDisabledPassengers.html"
+                >Routes Used Most By Vulnerable Passengers</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="main">
+        <h2 class="table-title">When do vulnerable passengers travel most?</h2>
+        <p>
+          This report identifies when vulnerable passengers travel most to
+          improve accessibility and allocate resources better. Vulnerable
+          passengers are identified by their ticket type:
+          <strong
+            >Senior SmartPass, Registered Blind SmartPass and War Disablement
+            SmartPass</strong
+          >.
+        </p>
+        <br />
+        <hr />
+        <br />
+
+        <!-- first question -->
+        <h2 class="table-title">Peak Travel Hours for Vulnerable Passengers</h2>
+        <p>
+          Which hours of the day see the most vulnerable passenger journeys?
+        </p>
+        <br />
+
+        <div id="output-report1" class="message"></div>
+
+        <!-- Summary -->
+        <div id="summary-report1"></div>
+        <br />
+
+        <!-- Simple chart -->
+        <div class="chart-container">
+          <div class="chart-box">
+            <p>
+              <strong>Vulnerable Passenger Trips by Hour of the Day</strong>
+            </p>
+            <canvas id="peakHourChart"></canvas>
+          </div>
+        </div>
+
+        <!--table -->
+        <div id="table-report1"></div>
+        <br />
+        <hr />
+        <br />
+
+        <div id="output-report2" class="message"></div>
+
+        <!-- Summary -->
+        <div id="summary-report2"></div>
+        <br />
+
+        <!-- Detailed table -->
+        <div id="table-report2"></div>
+      </div>
+      <!-- end .main -->
+
+      <footer class="footer">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <img
+              src="Images/logo.jpg"
+              alt="Translink logo"
+              class="footer__logo"
+            />
+          </div>
+          <div class="footer__social" aria-label="Social media links">
+            <a href="https://www.facebook.com/TranslinkNI" title="Facebook">
+              <img
+                src="Images/facebook-v2.svg"
+                alt="Facebook logo"
+                width="17"
+              />
+            </a>
+            <a href="https://www.instagram.com/translinkni" title="Instagram">
+              <img
+                src="Images/instagram-v2.svg"
+                alt="Instagram logo"
+                width="17"
+              />
+            </a>
+            <a href="https://twitter.com/TranslinkNI" title="X">
+              <img src="Images/x-v2.svg" alt="X logo" width="17" />
+            </a>
+            <a href="https://wa.me/447583122646" title="WhatsApp">
+              <img
+                src="Images/whatsapp-v2.svg"
+                alt="WhatsApp logo"
+                width="17"
+              />
+            </a>
+          </div>
+          <div class="footer__slogan">
+            <span class="footer__slogan-title">Better Connected</span>
+            <span>Accessible, Inclusive and Green</span>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p>&copy;2026 Translink</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/createScript.js"></script>
+    <script>
+      //this version of show message is different
+      const showMessage2 = (elementId, text, type) => {
+        const output = document.getElementById(elementId);
+        output.textContent = text;
+        output.className = `message ${type}`;
+      };
+
+      // This report identifies peak travel hours for vulnerable passengers,
+      // therefore helping Translink understand when to use more staff or have more accessibility support.
+      // Tables used: tblValidTicket, tblTrip, tblTicket
+      const loadReport1 = async () => {
+const sql = `SELECT
+    HOUR(t.scheduledDeparture) AS travelHour,
+    COUNT(vt.ticketId) AS totalVulnerableTickets,
+    (SELECT COUNT(DISTINCT DATE(scheduledDeparture)) FROM tblTrip) AS totalDaysInDataset
+FROM tblValidTicket vt
+INNER JOIN tblTrip t ON vt.tripId = t.tripId
+INNER JOIN tblTicket tk ON vt.ticketId = tk.ticketId
+WHERE tk.ticketType IN (
+    'Senior SmartPass',
+    'Registered Blind SmartPass',
+    'War Disablement SmartPass'
+)
+GROUP BY HOUR(t.scheduledDeparture)`;
+
+
+
+        const result = await runQuery(sql);
+
+        if (!result || !result.data) {
+          showMessage2(
+            "output-report1",
+            "No data returned from the server.",
+            "error",
+          );
+          return;
+        }
+
+        const rows = result.data;
+
+        if (rows.length === 0) {
+          showMessage2(
+            "output-report1",
+            "No vulnerable passenger travel data found.",
+            "error",
+          );
+          return;
+        }
+
+        const summaryContainer = document.getElementById("summary-report1");
+        summaryContainer.innerHTML = "";
+
+        //cant divide by zero
+const daysCount = rows[0].totalDaysInDataset || 1;
+
+        //for two peak hours
+        let totalTickets = 0;
+        let maxTickets = 0;
+        let busiestHours = [];
+        // maximum ticket count and total tickets
+        for (let row of rows) {
+          const ticketCount = Number(row.totalVulnerableTickets);
+          totalTickets += ticketCount;
+
+          if (ticketCount > maxTickets) {
+            maxTickets = ticketCount;
+          }
+        }
+
+        for (let row of rows) {
+          if (Number(row.totalVulnerableTickets) === maxTickets) {
+            busiestHours.push(row.travelHour + ":00");
+          }
+        }
+
+        //Allows average to have 0 dp
+        const avgPerDay = (totalTickets / daysCount).toFixed(0);
+
+        const table = document.createElement("table");
+
+        const headings = [
+          "Average Vulnerable Journeys Per Day",
+          "Busiest Hour(s)",
+        ];
+
+        // Header row
+        const headerRow = document.createElement("tr");
+        for (let heading of headings) {
+          const th = document.createElement("th");
+          th.textContent = heading;
+          headerRow.appendChild(th);
+        }
+        table.appendChild(headerRow);
+
+        // Incase of two or more peak hours
+        const values = [avgPerDay, busiestHours.join(" & ")];
+
+        const valueRow = document.createElement("tr");
+        for (let value of values) {
+          const td = document.createElement("td");
+          td.textContent = value;
+          valueRow.appendChild(td);
+        }
+        table.appendChild(valueRow);
+
+        summaryContainer.appendChild(table);
+
+        const labels = [];
+        const averageCounts = [];
+
+        for (let row of rows) {
+          labels.push(row.travelHour + ":00");
+
+          // Calculate the average first
+          let calculation = Number(row.totalVulnerableTickets) / daysCount;
+
+          averageCounts.push(calculation.toFixed(1));
+        }
+
+        new Chart(document.getElementById("peakHourChart"), {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Average Vulnerable Journeys by Hour of the Day",
+                data: averageCounts,
+                borderColor: "#afca1aff",
+                backgroundColor: "rgba(175, 202, 26, 0.1)",
+                borderWidth: 2,
+                pointBackgroundColor: "#afca1aff",
+                fill: true,
+                tension: 0.3,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: { beginAtZero: true },
+              y: { beginAtZero: true },
+            },
+          },
+        });
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadReport1();
+      });
+    </script>
+  </body>
+</html>

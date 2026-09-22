@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Operator</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility
+                            Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <h2 class="table-title">Operator Records</h2>
+            <p>
+                The table below lists all operators. Click
+                <strong>Edit</strong> to load an operator into the form for updating.
+            </p>
+            <br>
+            <hr>
+            <br>
+
+            <!-- Search bar for filtering operators -->
+            <input type="text" id="operatorSearch" placeholder="Search by last name..."
+                style="padding: 8px; width: 250px; margin-bottom: 15px;">
+
+
+            <!-- table created by js -->
+            <div id="tableOutput"></div>
+            <br>
+            <hr>
+            <h2 class="table-title">Edit Operator</h2>
+
+            <!-- text to remind the user which operator is being updated -->
+            <p id="selectedOperatorText" class="muted">
+                Choose an operator from the table first.
+            </p>
+            <br>
+
+            <!-- form for editing operators. automatically populated when an operator is selected -->
+            <form id="editForm" novalidate>
+                <div class="form-row">
+                    <label for="operatorFirstName">First Name</label>
+                    <input type="text" id="operatorFirstName" />
+                </div>
+
+                <div class="form-row">
+                    <label for="operatorLastName">Last Name</label>
+                    <input type="text" id="operatorLastName" />
+                </div>
+
+                <div class="form-row">
+                    <label for="serviceTypeSearch">Service Type</label>
+
+                    <div class="input-wrapper">
+                        <div class="input-anchor">
+                            <input type="text" id="serviceTypeSearch" placeholder="Select service type..."
+                                autocomplete="off">
+                            <div id="serviceTypeResults" class="dropdown-results"></div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="serviceType">
+                </div>
+
+                <div class="form-row">
+                    <label for="contactEmail">Contact Email</label>
+                    <input type="email" id="contactEmail" />
+                </div>
+
+                <button type="submit">Update Operator</button>
+            </form>
+
+            <!-- success/error messages -->
+            <div id="output" class="message"></div>
+
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg"
+                            alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg"
+                            alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo"
+                            width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg"
+                            alt="WhatsApp logo" width="17"></a>
+                </div>
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- js for validation, loading data, and connecting to db-->
+    <script src="js/createScript.js"></script>
+    <script>
+        // array for all data
+        let allOperators = [];
+
+        // manages the dropdown for service type in the form
+        const setupServiceTypeDropdown = () => {
+            const input = document.getElementById("serviceTypeSearch");
+            const resultsContainer = document.getElementById("serviceTypeResults");
+            const hidden = document.getElementById("serviceType");
+
+            const types = ["Bus", "Train"];
+
+            const render = () => {
+                const query = input.value.toLowerCase().trim();
+
+                const filtered = types.filter(t =>
+                    t.toLowerCase().includes(query)
+                );
+
+                if (filtered.length === 0) {
+                    resultsContainer.innerHTML = "<div class='dropdown-no-results'>No results found</div>";
+                    return;
+                }
+
+                resultsContainer.innerHTML = filtered.map(type => {
+                    return `<div class="dropdown-result" data-value="${type}">${type}</div>`;
+                }).join("");
+
+                resultsContainer.querySelectorAll(".dropdown-result").forEach(item => {
+                    item.addEventListener("mousedown", () => {
+                        const value = item.getAttribute("data-value");
+
+                        input.value = value;
+                        hidden.value = value;
+
+                        resultsContainer.innerHTML = "";
+                    });
+                });
+            };
+
+            input.addEventListener("input", render);
+
+            input.addEventListener("focus", () => {
+                input.value = "";
+                hidden.value = "";
+                render();
+            });
+
+            input.addEventListener("blur", () => {
+                setTimeout(() => resultsContainer.innerHTML = "", 150);
+            });
+        };
+
+        let selectedOperatorId = null;
+
+        //clears any old messages so the page does not show stale feedback
+        const clearMessage = () => {
+            const messageDiv = document.getElementById("output");
+            messageDiv.textContent = "";
+            messageDiv.className = "message";
+        };
+
+        //puts the form back into its starting state.
+        const resetForm = () => {
+            document.getElementById("editForm").reset();
+            selectedOperatorId = null;
+            document.getElementById("selectedOperatorText").textContent =
+                "Choose an operator from the table first.";
+        };
+
+        //copy the chosen operator's data from the table into the form fields.
+        const selectOperator = (operator) => {
+            const selectedOperatorText = document.querySelector("#selectedOperatorText");
+
+            selectedOperatorId = Number(operator.operatorId);
+            document.querySelector("#operatorFirstName").value = operator.operatorFirstName;
+            document.querySelector("#operatorLastName").value = operator.operatorLastName;
+            document.querySelector("#serviceTypeSearch").value = operator.serviceType;
+            document.querySelector("#serviceType").value = operator.serviceType;
+            document.querySelector("#contactEmail").value = operator.contactEmail;
+            selectedOperatorText.textContent = `Editing Operator ID ${operator.operatorId}: ${operator.operatorFirstName} ${operator.operatorLastName}`;
+            clearMessage();
+        };
+
+        //loads all operators from the database and display in the table
+        const printTable = async () => {
+            const output = document.querySelector("#tableOutput");
+            output.innerHTML = "";
+
+            const sql = "SELECT * FROM tblOperator ORDER BY operatorLastName ASC;";
+            const operators = await runQuery(sql);
+
+            if (!operators || !operators.data || operators.data.length === 0) {
+                output.textContent = "No operators found.";
+                return;
+            }
+
+            allOperators = operators.data;
+
+            renderTable();
+        };
+
+        // creates the search bar for filtering by last name
+        const setupSearch = () => {
+            const searchInput = document.getElementById("operatorSearch");
+
+            searchInput.addEventListener("input", () => {
+                const query = searchInput.value.trim().toLowerCase();
+
+                const filtered = allOperators.filter(op =>
+                    op.operatorLastName.toLowerCase().includes(query)
+                );
+
+                renderTable(filtered);
+            });
+        };
+
+
+        // creates the table
+        const renderTable = (rows = allOperators) => {
+            const output = document.querySelector("#tableOutput");
+            output.innerHTML = "";
+
+            const table = document.createElement("table");
+
+            const headerRow = document.createElement("tr");
+            const headings = ["First Name", "Last Name", "Service Type", "Contact Email", "Action"];
+
+            for (let heading of headings) {
+                const th = document.createElement("th");
+                th.textContent = heading;
+                headerRow.appendChild(th);
+            }
+
+            table.appendChild(headerRow);
+
+            for (let row of rows) {
+                const tr = document.createElement("tr");
+
+                tr.innerHTML = `
+            <td>${row.operatorFirstName}</td>
+            <td>${row.operatorLastName}</td>
+            <td>${row.serviceType}</td>
+            <td>${row.contactEmail}</td>
+        `;
+
+                const tdEdit = document.createElement("td");
+                const editButton = document.createElement("button");
+                editButton.textContent = "Edit";
+
+                // jumps to the form when "update" is clicked
+                editButton.addEventListener("click", () => {
+                    selectOperator(row);
+                    document.querySelector("#editForm").scrollIntoView({ behavior: "smooth", block: "start" });
+                });
+
+                tdEdit.appendChild(editButton);
+                tr.appendChild(tdEdit);
+
+                table.appendChild(tr);
+            }
+
+            output.appendChild(table);
+        };
+
+
+        // loads everything onto the page
+        document.addEventListener("DOMContentLoaded", () => {
+            resetForm();
+            printTable();
+            setupServiceTypeDropdown();
+            setupSearch();
+        });
+
+        // validates inputted data and updates the operator record
+        document.querySelector("#editForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            if (!selectedOperatorId) {
+                showMessage("No operator selected.", "error");
+                return;
+            }
+            const operator = {
+                operatorId: selectedOperatorId,
+                operatorFirstName: document.querySelector("#operatorFirstName").value.trim(),
+                operatorLastName: document.querySelector("#operatorLastName").value.trim(),
+                serviceType: document.querySelector("#serviceType").value,
+                contactEmail: document.querySelector("#contactEmail").value.trim()
+            };
+
+            const validationMessage = validateOperator(operator);
+            if (validationMessage) {
+                showMessage(validationMessage, "error");
+                return;
+            }
+
+            const emailMessage = await validateUniqueEmail(operator.contactEmail);
+            if (emailMessage) {
+                showMessage(emailMessage, "error");
+                return;
+            }
+
+            const sql = `UPDATE tblOperator
+                            SET operatorFirstName = '${operator.operatorFirstName}',
+                                operatorLastName = '${operator.operatorLastName}',
+                                serviceType = '${operator.serviceType}',
+                                contactEmail = '${operator.contactEmail}'
+                            WHERE operatorId = ${operator.operatorId};`;
+            const result = await runQuery(sql);
+            if (result && result.success) {
+                showMessage("Operator updated successfully.", "success");
+                resetForm();
+                printTable();
+                return;
+            }
+            if (result && result.success) {
+                showMessage("Operator added successfully.", "success");
+                form.reset();
+            } else {
+                if (result?.error?.includes("Duplicate entry")) {
+                    showMessage("This email is already registered.", "error");
+                } else {
+                    showMessage("Unable to add the operator. Please try again.", "error");
+                }
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

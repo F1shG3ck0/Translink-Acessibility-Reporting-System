@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority Accessibility Improvements at Stops</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility
+                            Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <h2>Which stops should be prioritised for accessibility improvements?</h2>
+            <p class="muted">
+                This report identifies stops that may require priority accessibility improvements.
+                <br>
+                It combines accessibility complaint levels with the number of accessibility-related stop features
+                currently available.
+                <br>
+                Stops with more accessibility complaints and fewer accessibility features are given a higher priority
+                level.
+                <br>
+                This will help in the identification of stops which need immediate attention to improve accessibility.
+            </p>
+            <br>
+            <hr><br>
+
+            <div class="form-row">
+                <label for="stopTypeFilter">Filter by Stop Type</label>
+                <div class="input-wrapper">
+                    <div class="input-anchor">
+                        <select id="stopTypeFilter">
+                            <option value="">All Stop Types</option>
+                            <option value="Bus Stop">Bus Stop</option>
+                            <option value="Train Station">Train Station</option>
+                            <option value="Bus & Train Station">Bus & Train Station</option>
+                            <option value="Buscentre">Buscentre</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <canvas id="priorityStopsChart"></canvas>
+            </div>
+
+            <br>
+            <div id="tableOutput"></div>
+            <div id="output" class="message"></div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg"
+                            alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg"
+                            alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo"
+                            width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg"
+                            alt="WhatsApp logo" width="17"></a>
+                </div>
+
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/createScript.js"></script>
+
+    <script>
+        let priorityChart;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const stopTypeFilter = document.getElementById("stopTypeFilter");
+
+            loadReport();
+
+            stopTypeFilter.addEventListener("change", () => {
+                loadReport(stopTypeFilter.value);
+            });
+        });
+
+        async function loadReport(stopType = "") {
+            const tableContainer = document.getElementById("tableOutput");
+            const output = document.getElementById("output");
+
+            tableContainer.innerHTML = "<p>Updating report...</p>";
+            output.textContent = "";
+
+            let sql = `
+                SELECT
+                    -- Business question: Which stops should be prioritised for accessibility improvements based on accessibility complaints and the range of accessibility-related features available at each stop?
+                    s.stopId,
+                    s.stopName,
+                    s.stopType,
+
+                    COUNT(DISTINCT CASE
+                        WHEN c.complaintType = 'Accessibility' THEN c.complaintId
+                        ELSE NULL
+                    END) AS accessibilityComplaints,
+
+                    SUM(CASE
+                        WHEN f.featureName IN (
+                            'Tactile Paving',
+                            'Elevator Access',
+                            'Baby Changing Facilities',
+                            'Braille Signage',
+                            'Sheltered Waiting Area',
+                            'Hospital Stop',
+                            'Disabled Toilets',
+                            'Ramp Pathway'
+                        ) THEN 1
+                        ELSE 0
+                    END) AS accessibilityFeatureCount,
+
+                    CASE
+                        WHEN SUM(CASE
+                            WHEN f.featureName IN (
+                                'Tactile Paving',
+                                'Elevator Access',
+                                'Baby Changing Facilities',
+                                'Braille Signage',
+                                'Sheltered Waiting Area',
+                                'Hospital Stop',
+                                'Disabled Toilets',
+                                'Ramp Pathway'
+                            ) THEN 1
+                            ELSE 0
+                        END) >= 6 THEN 'High Feature Coverage'
+
+                        WHEN SUM(CASE
+                            WHEN f.featureName IN (
+                                'Tactile Paving',
+                                'Elevator Access',
+                                'Baby Changing Facilities',
+                                'Braille Signage',
+                                'Sheltered Waiting Area',
+                                'Hospital Stop',
+                                'Disabled Toilets',
+                                'Ramp Pathway'
+                            ) THEN 1
+                            ELSE 0
+                        END) BETWEEN 3 AND 5 THEN 'Moderate Feature Coverage'
+
+                        ELSE 'Low Feature Coverage'
+                    END AS featureCoverage,
+
+                    CASE
+                        WHEN
+                            COUNT(DISTINCT CASE
+                                WHEN c.complaintType = 'Accessibility' THEN c.complaintId
+                                ELSE NULL
+                            END) >= 2
+                            AND
+                            SUM(CASE
+                                WHEN f.featureName IN (
+                                    'Tactile Paving',
+                                    'Elevator Access',
+                                    'Baby Changing Facilities',
+                                    'Braille Signage',
+                                    'Sheltered Waiting Area',
+                                    'Hospital Stop',
+                                    'Disabled Toilets',
+                                    'Ramp Pathway'
+                                ) THEN 1
+                                ELSE 0
+                            END) <= 2
+                        THEN 'High Priority'
+
+                        WHEN
+                            COUNT(DISTINCT CASE
+                                WHEN c.complaintType = 'Accessibility' THEN c.complaintId
+                                ELSE NULL
+                            END) >= 1
+                            OR
+                            SUM(CASE
+                                WHEN f.featureName IN (
+                                    'Tactile Paving',
+                                    'Elevator Access',
+                                    'Baby Changing Facilities',
+                                    'Braille Signage',
+                                    'Sheltered Waiting Area',
+                                    'Hospital Stop',
+                                    'Disabled Toilets',
+                                    'Ramp Pathway'
+                                ) THEN 1
+                                ELSE 0
+                            END) <= 3
+                        THEN 'Medium Priority'
+
+                        ELSE 'Low Priority'
+                    END AS priorityLevel
+
+                FROM tblStop s
+                LEFT JOIN tblComplaint c
+                    ON s.stopId = c.stopId
+                LEFT JOIN tblStopFeature sf
+                    ON s.stopId = sf.stopId
+                LEFT JOIN tblFeature f
+                    ON sf.featureId = f.featureId
+                    AND f.featureCategory = 'Stop'
+            `;
+
+            if (stopType !== "") {
+                sql += `
+                    WHERE s.stopType = '${stopType}'
+                `;
+            }
+
+            sql += `
+                GROUP BY
+                    s.stopId,
+                    s.stopName,
+                    s.stopType
+
+                HAVING
+                    COUNT(DISTINCT CASE
+                        WHEN c.complaintType = 'Accessibility' THEN c.complaintId
+                        ELSE NULL
+                    END) >= 1
+                    OR
+                    SUM(CASE
+                        WHEN f.featureName IN (
+                            'Tactile Paving',
+                            'Elevator Access',
+                            'Baby Changing Facilities',
+                            'Braille Signage',
+                            'Sheltered Waiting Area',
+                            'Hospital Stop',
+                            'Disabled Toilets',
+                            'Ramp Pathway'
+                        ) THEN 1
+                        ELSE 0
+                    END) <= 3
+
+                ORDER BY
+                    accessibilityComplaints DESC,
+                    accessibilityFeatureCount ASC,
+                    s.stopName ASC
+                LIMIT 10;
+            `;
+
+            try {
+                const result = await runQuery(sql.trim());
+
+                if (!result || !result.data || result.data.length === 0) {
+                    tableContainer.innerHTML = "<p>- No records found</p>";
+                    clearChart();
+                    return;
+                }
+
+                renderTable(result.data, stopType);
+                renderChart(result.data, stopType);
+
+            } catch (error) {
+                console.error(error);
+                tableContainer.innerHTML = "<p>- No records found</p>";
+                output.textContent = "There was a problem loading the report.";
+                clearChart();
+            }
+        }
+
+        function renderTable(data, stopType) {
+            const tableContainer = document.getElementById("tableOutput");
+
+            let heading = "Top 10 Stops Requiring Accessibility Improvements";
+            if (stopType !== "") {
+                heading = `Top 10 ${stopType}s Requiring Accessibility Improvements`;
+            }
+
+            let html = `
+                <h3>${heading}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stop ID</th>
+                            <th>Stop Name</th>
+                            <th>Stop Type</th>
+                            <th>Accessibility Complaints</th>
+                            <th>Accessibility Features</th>
+                            <th>Feature Coverage</th>
+                            <th>Priority Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            data.forEach(row => {
+                html += `
+                    <tr>
+                        <td>${row.stopId}</td>
+                        <td>${row.stopName}</td>
+                        <td>${row.stopType}</td>
+                        <td style="text-align:center;"><strong>${row.accessibilityComplaints}</strong></td>
+                        <td style="text-align:center;">${row.accessibilityFeatureCount}</td>
+                        <td>${row.featureCoverage}</td>
+                        <td><strong>${row.priorityLevel}</strong></td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            tableContainer.innerHTML = html;
+        }
+
+        function renderChart(data, stopType) {
+            const ctx = document.getElementById("priorityStopsChart").getContext("2d");
+
+            const labels = [];
+            const complaintValues = [];
+            const featureValues = [];
+
+            data.forEach(row => {
+                labels.push(row.stopName);
+                complaintValues.push(row.accessibilityComplaints);
+                featureValues.push(row.accessibilityFeatureCount);
+            });
+
+            if (priorityChart) {
+                priorityChart.destroy();
+            }
+
+            let chartTitle = "Accessibility Improvement Priority by Stop";
+            if (stopType !== "") {
+                chartTitle = `Accessibility Improvement Priority by Stop Type: ${stopType}`;
+            }
+
+            priorityChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: "Accessibility Complaints",
+                            data: complaintValues,
+                            backgroundColor: "#006B6F"
+                        },
+                        {
+                            label: "Accessibility Feature Count",
+                            data: featureValues,
+                            backgroundColor: "#B7C1C7"
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: chartTitle
+                        },
+                        legend: {
+                            position: "bottom"
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "Count"
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function clearChart() {
+            if (priorityChart) {
+                priorityChart.destroy();
+                priorityChart = null;
+            }
+        }
+    </script>
+</body>
+
+</html>

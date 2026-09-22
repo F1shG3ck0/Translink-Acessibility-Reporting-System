@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Complaint Resolution Rate Over Time</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <h2>Accessibility Complaint Resolution Rate Over Time</h2>
+            <p>This report shows the percentage of accessibility related complaints made in a particular week that were resolved, and shows whether each week is meeting our target accessibility complaint resolution rate of 80%</p>
+            <br>
+            <hr><br>
+            <div id="message" class="message"></div>
+            <div class="chart-panel">
+                <div class="chart-wrapper">
+                    <canvas id="marksChart"></canvas>
+                </div>
+            </div>
+            <p>This report tracks how effectively accessibility issues are being resolved on a weekly basis, and helps to monitor service performance trends and identify periods where additional resources may be required</p>
+            <br>     
+        </div>
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg" alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg" alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo" width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg" alt="WhatsApp logo" width="17"></a>
+                </div>
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/createScript.js"></script>
+    <script>
+        let marksChart = null;
+
+        const printChart = async () => {
+            const sql = `SELECT 
+                DATE_FORMAT(STR_TO_DATE(CONCAT(YEARWEEK(complaintDate, 1), ' Monday'), '%X%V %W'), '%d/%m/%Y') AS complaintWeek,
+                ROUND((SUM(CASE WHEN isResolved = 1 THEN 1 ELSE 0 END) / COUNT(*)) * 100, 2) AS resolutionRate
+            FROM tblComplaint
+            WHERE complaintType = 'Accessibility'
+            GROUP BY YEARWEEK(complaintDate, 1)
+            HAVING COUNT(*) > 0
+            ORDER BY YEARWEEK(complaintDate, 1);`;
+
+            const result = await runQuery(sql);
+
+            if (!result || !result.data || result.data.length === 0) {
+                showMessage("No data found for 'Accessibility' complaints.", "error");
+                if (marksChart) marksChart.destroy();
+                return;
+            }
+
+            const labels = result.data.map(row => row.complaintWeek);
+            const resolutionRates = result.data.map(row => Number(row.resolutionRate));
+
+            const chartCanvas = document.querySelector("#marksChart");
+            if (marksChart) marksChart.destroy();
+
+            marksChart = new Chart(chartCanvas, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Weekly Resolution Rate (%)',
+                            data: resolutionRates,
+                            borderColor: '#afca1aff',
+                            backgroundColor: 'rgba(175, 202, 26, 0.2)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointHoverRadius: 8
+                        },
+                        {
+                            label: 'Target (80%)',
+                            data: labels.map(() => 80), 
+                            borderColor: '#084f5dff',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false,
+                            tension: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Percentage of Accessibility ComplaintsResolved'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Week Commencing'
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+        document.addEventListener("DOMContentLoaded", printChart);
+    </script>
+</body>
+</html>

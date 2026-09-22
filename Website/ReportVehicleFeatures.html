@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Features Report</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility
+                            Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <h2>What features are available on different vehicles?</h2>
+            <p>The table below shows all Translink vehicles and which accessibility features they have, including
+                vehicles
+                with no accessibility features.</p>
+            <br>
+            <hr>
+
+            <h2>Vehicles and their features</h2>
+
+            <!-- Search bar for filtering by vehicle ID -->
+            <input type="text" id="vehicleSearch" placeholder="Search by Vehicle ID..."
+                style="padding: 8px; width: 250px; margin-bottom: 15px;">
+
+            <!-- table with vehicle feature data-->
+            <table id="reportTable">
+                <thead>
+                    <tr>
+                        <th>Vehicle ID</th>
+                        <th>Vehicle Type</th>
+                        <th>Feature Name</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <p>This report provides a clear overview of the accessibility and comfort features available across the
+                vehicle fleet, showing which vehicles are fully equipped and which lack key features. By listing every
+                vehicle alongside its associated features, the report exposes gaps or inconsistencies that may affect
+                passenger experience, particularly for users who rely on audio‑visual announcements, priority seating,
+                or wheelchair spaces. Identifying vehicles with missing features helps operational teams prioritise
+                retrofitting, maintenance, or fleet rotation strategies to ensure a more consistent and equitable
+                service across all routes.</p>
+        </div>
+
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg"
+                            alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg"
+                            alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo"
+                            width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg"
+                            alt="WhatsApp logo" width="17"></a>
+                </div>
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <!--js for linking to database -->
+    <script src="js/createScript.js"></script>
+
+    <script>
+        // initialising array to hold all rows for search functionality
+        let allRows = [];
+
+        // Load all rows from the VIEW
+        const loadReport = async () => {
+            const sql = "SELECT * FROM vwVehicleFeatures ORDER BY vehicleId;";
+            const result = await runQuery(sql);
+
+            if (!result || !result.data) {
+                console.log("No data returned", result);
+                return;
+            }
+
+            // array to hold all rows for search functionality
+            allRows = result.data;
+            renderTable(allRows);
+        };
+
+        // Render table rows based on data pulled from the view
+        const renderTable = (rows) => {
+            const tbody = document.querySelector("#reportTable tbody");
+            tbody.innerHTML = "";
+
+            //creates a row in the table for each row from the view, if a vehicle has no features it will show "None" in the feature column
+            rows.forEach(row => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                <td>${row.vehicleId}</td>
+                <td>${row.vehicleType}</td>
+                <td>${row.featureName ?? "None"}</td>
+            `;
+                tbody.appendChild(tr);
+            });
+        };
+
+        // logic for searching vehicles by vehicle ID
+        const setupSearch = () => {
+            const searchInput = document.getElementById("vehicleSearch");
+
+            searchInput.addEventListener("input", () => {
+                const query = searchInput.value.trim().toLowerCase();
+
+                const filtered = allRows.filter(row =>
+                    row.vehicleId.toString().toLowerCase().startsWith(query)
+                );
+
+                renderTable(filtered);
+            });
+        };
+
+        // loading the report and setting up search functionality.
+        document.addEventListener("DOMContentLoaded", () => {
+            loadReport();
+            setupSearch();
+        });
+    </script>
+
+</body>
+
+</html>

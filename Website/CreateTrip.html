@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Trip</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <h2>Add Trip</h2>
+            <p>Enter the values below and click <b>Add Trip</b> to create a new trip</p>
+            <br>
+            <hr><br>
+
+            <form id="tripForm" novalidate>
+                <div class="row row-3">
+                    <div class="form-row">
+                        <label for="routeSearch">Route</label>
+                        <div class="input-wrapper">
+                            <div class="input-anchor">
+                                <input type="text" id="routeSearch" placeholder="Search route by route name..." autocomplete="off">
+                            </div>
+                        </div>
+                        <div id="routeResults" class="dropdown-results"></div>
+                        <input type="hidden" id="routeId">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="operatorSearch">Operator</label>
+                        <div class="input-wrapper">
+                            <div class="input-anchor">
+                                <input type="text" id="operatorSearch" placeholder="Search operator by last name..." autocomplete="off">
+                            </div>
+                        </div>
+                        <div id="operatorResults" class="dropdown-results"></div>
+                        <input type="hidden" id="operatorId">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="vehicleSearch">Vehicle</label>
+                        <div class="input-wrapper">
+                            <div class="input-anchor">
+                                <input type="text" id="vehicleSearch" placeholder="Search vehicle by the vehicle's ID..." autocomplete="off">
+                            </div>
+                        </div>
+                        <div id="vehicleResults" class="dropdown-results"></div>
+                        <input type="hidden" id="vehicleId">
+                    </div>
+                </div>
+
+                <div class="row row-2">
+                    <div class="form-row">
+                        <br><br>
+                        <label for="scheduledDeparture">Scheduled Departure</label>
+                        <input type="datetime-local" id="scheduledDeparture" name="scheduledDeparture" required>
+                        <div class="input-hint">Tip: Use your keyboard arrow keys to scroll<br>through hours and minutes</div>
+                    </div>
+
+                    <div class="form-row">
+                        <br><br>
+                        <label for="scheduledArrival">Scheduled Arrival</label>
+                        <input type="datetime-local" id="scheduledArrival" name="scheduledArrival" required>
+                        <div class="input-hint">Tip: Use your keyboard arrow keys to scroll<br>through hours and minutes</div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit">Add Trip</button>
+            </form>
+
+            <div id="output" class="message"></div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg" alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg" alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo" width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg" alt="WhatsApp logo" width="17"></a>
+                </div>
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/createScript.js"></script>
+    <script>
+        const setupAutocomplete = (inputId, resultsId, searchType) => {
+            const input = document.getElementById(inputId);
+            const resultsContainer = document.getElementById(resultsId);
+
+            const performSearch = async () => {
+                const query = input.value.trim();
+                document.getElementById(`${searchType}Id`).value = "";
+
+                let sql;
+                const filter = query ? `WHERE ${searchType === 'operator' ? 'operatorLastName' : (searchType === 'route' ? 'routeName' : 'vehicleId')} LIKE '${escapeSql(query)}%'` : "";
+
+                if (searchType === "route") {
+                    sql = `SELECT routeId, routeName, startLocation, endLocation FROM tblRoute ${filter}`;
+                } else if (searchType === "operator") {
+                    sql = `SELECT operatorId, operatorFirstName, operatorLastName, serviceType FROM tblOperator ${filter}`;
+                } else if (searchType === "vehicle") {
+                    sql = `SELECT vehicleId, vehicleType FROM tblVehicle ${filter}`;
+                }
+
+                const results = await runQuery(sql);
+                if (results && results.data && results.data.length > 0) {
+                    resultsContainer.innerHTML = results.data.map(result => {
+                        let displayText;
+                        if (searchType === "route") displayText = `${result.routeName} | ${result.startLocation} to ${result.endLocation}`;
+                        else if (searchType === "operator") displayText = `${result.operatorFirstName} ${result.operatorLastName} | ${result.serviceType}`;
+                        else if (searchType === "vehicle") displayText = `${result.vehicleId} | ${result.vehicleType}`;
+
+                        return `<div class="dropdown-result" data-id="${result[`${searchType}Id`]}">${displayText}</div>`;
+                    }).join("");
+
+                    resultsContainer.querySelectorAll(".dropdown-result").forEach(item => {
+                        item.addEventListener("mousedown", (e) => {
+                            input.value = item.textContent;
+                            document.getElementById(`${searchType}Id`).value = item.getAttribute("data-id");
+                            let category = "";
+                            const text = item.textContent.toLowerCase();
+
+                            if (searchType === "route") {
+                                category = text.includes("line") ? "Train" : "Bus";
+                            } else if (searchType === "operator") {
+                                category = text.includes("train") ? "Train" : "Bus";
+                            } else if (searchType === "vehicle") {
+                                category = text.includes("ni railways") ? "Train" : "Bus";
+                            }
+                            input.setAttribute("data-category", category);
+                            resultsContainer.innerHTML = "";
+                        });
+                    });
+                } else {
+                    resultsContainer.innerHTML = "<div class='dropdown-no-results'>No results found</div>";
+                }
+            };
+
+            input.addEventListener("input", performSearch);
+
+            input.addEventListener("focus", () => {
+                input.value = "";
+                document.getElementById(`${searchType}Id`).value = "";
+                performSearch();
+            });
+
+            input.addEventListener("blur", () => {
+                setTimeout(() => {
+                    resultsContainer.innerHTML = "";
+                    if (!document.getElementById(`${searchType}Id`).value) {
+                        input.value = "";
+                    }
+                }, 200);
+            });
+        };
+
+        const now = new Date();
+        const minDateTime = now.toISOString().slice(0, 16); 
+
+        document.getElementById("scheduledDeparture").setAttribute("min", minDateTime);
+        document.getElementById("scheduledArrival").setAttribute("min", minDateTime);
+
+        document.querySelector("#tripForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const routeInput = document.querySelector("#routeSearch");
+            const operatorInput = document.querySelector("#operatorSearch");
+            const vehicleInput = document.querySelector("#vehicleSearch");
+
+            const trip = {
+                routeID: Number(document.querySelector("#routeId").value),
+                operatorID: Number(document.querySelector("#operatorId").value),
+                vehicleID: Number(document.querySelector("#vehicleId").value),
+                scheduledDeparture: document.querySelector("#scheduledDeparture").value,
+                scheduledArrival: document.querySelector("#scheduledArrival").value,
+                routeCat: routeInput.getAttribute("data-category") || "",
+                operatorCat: operatorInput.getAttribute("data-category") || "",
+                vehicleCat: vehicleInput.getAttribute("data-category") || ""
+            };
+
+            const validationMessage = validateTrip(trip);
+            if (validationMessage) {
+                showMessage(validationMessage, "error");
+                return;
+            }
+
+            const checkSql = `
+                SELECT 
+                    (SELECT COUNT(*) FROM tblTrip 
+                     WHERE vehicleId = ${trip.vehicleID} 
+                     AND DATE_FORMAT(scheduledDeparture, '%Y-%m-%dT%H:%i') = '${escapeSql(trip.scheduledDeparture)}') as vehicleCount,
+                    (SELECT COUNT(*) FROM tblTrip 
+                     WHERE operatorId = ${trip.operatorID} 
+                     AND DATE_FORMAT(scheduledDeparture, '%Y-%m-%dT%H:%i') = '${escapeSql(trip.scheduledDeparture)}') as operatorCount
+            `;
+
+            const checkResult = await runQuery(checkSql);
+
+            if (checkResult && checkResult.data && checkResult.data.length > 0) {
+                const counts = checkResult.data[0];
+                
+                if (Number(counts.vehicleCount) > 0) {
+                    showMessage("Validation Error: This vehicle is already assigned to another trip at this departure time.", "error");
+                    return;
+                }
+                
+                if (Number(counts.operatorCount) > 0) {
+                    showMessage("Validation Error: This operator is already assigned to another trip at this departure time.", "error");
+                    return;
+                }
+            }
+
+            const sql = `
+                INSERT INTO tblTrip (routeId, vehicleId, operatorId, scheduledDeparture, scheduledArrival) VALUES
+                (
+                    ${trip.routeID},
+                    ${trip.vehicleID},
+                    ${trip.operatorID},
+                    '${escapeSql(trip.scheduledDeparture)}',
+                    '${escapeSql(trip.scheduledArrival)}'
+                )
+            `;
+
+            const outputMessage = document.querySelector("#output");
+            outputMessage.innerHTML = "Processing trip record...";
+            outputMessage.style.display = "block";
+            const result = await runQuery(sql);
+
+            if (result && result.success) {
+                showMessage("Trip record added successfully.", "success");
+                document.querySelector("#tripForm").reset();
+                return;
+            }
+
+            if (result && result.error) {
+                let errorMessage = result.error;
+                if (errorMessage.toLowerCase().includes("duplicate entry")) {
+                    if (errorMessage.toLowerCase().includes("vehicleid")) {
+                        errorMessage = "This vehicle is already assigned to a trip at this departure time.";
+                    } else if (errorMessage.toLowerCase().includes("operatorid")) {
+                        errorMessage = "This operator is already assigned to a trip at this departure time.";
+                    } else {
+                        errorMessage = "This trip conflicts with an existing record (duplicate time).";
+                    }
+                }
+                showMessage(errorMessage, "error");
+            } else {
+                showMessage("Unable to add the record.", "error");
+            }
+        });
+
+        setupAutocomplete("routeSearch", "routeResults", "route");
+        setupAutocomplete("operatorSearch", "operatorResults", "operator");
+        setupAutocomplete("vehicleSearch", "vehicleResults", "vehicle");
+
+        const dateInputs = document.querySelectorAll('input[type="datetime-local"]');
+
+        dateInputs.forEach(input => {
+            const hint = input.nextElementSibling;
+            input.addEventListener('click', (event) => {
+                const rect = input.getBoundingClientRect();
+                const clickX = event.clientX - rect.left;
+                const isIconClick = clickX > (rect.width - 40);
+                if (isIconClick) {
+                    hint.classList.add('show-tip');
+                } else {
+                    hint.classList.remove('show-tip');
+                }
+            });
+            input.addEventListener('blur', () => {
+                setTimeout(() => {
+                    hint.classList.remove('show-tip');
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

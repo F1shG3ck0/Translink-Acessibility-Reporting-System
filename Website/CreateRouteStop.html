@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Rosa - This page allows the user to add a stop to a route in the database. -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Route Stop</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    
+        <div class="main">
+            <h2>Add a Stop to a Route</h2>
+            <p>Enter the values below and click the button to insert a new row into the <code>RouteStop</code> table.</p>
+            <br>
+            <hr>
+            <br>
+
+            <!-- This form collects the values needed for one new RouteStop record. -->
+            <form id="routeStopForm">
+            
+                <div id="routeForm" class="form-row">
+                    <label for="routeInput">Route Search</label>
+                    
+                    <div class="input-wrapper">
+                        <div class="input-anchor">
+                            <input id="routeInput" type="text"
+                            placeholder="Search route by route name..."
+                            autocomplete="off" required>
+                        </div>
+                        <button type="button" id="confirmRoute">Confirm Route</button>
+                    </div>
+                
+                    <div id="routeResults" class="dropdown-results"></div>
+                    <input type="hidden" id="routeId">               
+                </div>
+                <br><br>
+            
+                <div id="stopForm" class="form-row">
+                    <label for="stopInput">Stop Search</label>
+                    
+                    <div class="input-wrapper">
+                        <div class="input-anchor">
+                            <input id="stopInput"
+                                type="text"
+                                placeholder="Search stop by name..."
+                                autocomplete="off"
+                                required
+                                disabled>
+                        </div>
+                        <button type="button" id="confirmStop">Confirm Stop</button>
+                    </div>
+                    <div id="stopResults" class="dropdown-results"></div>
+                    <input type="hidden" id="stopId">
+                </div>
+             
+            
+                <br><br>
+                <button type="submit" id="AddRouteStop">Add Record</button>
+                <button type="button" id="resetForm">Reset Form</button>
+            </form>
+
+            <!-- This empty box is filled with success or error messages by JavaScript. -->
+            <div id="output" class="message"></div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+           
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg" alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg" alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo" width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg" alt="WhatsApp logo" width="17"></a>
+                </div>
+
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+   
+    <script src="js/createScript.js"></script>
+    <script>
+        // Show feedback to the user after validation or a database action.
+        //now in the JS file to avoid repetition across pages
+        /*const showMessage = (text, type) => {
+            const output = document.querySelector("#output");
+            output.textContent = text;
+            output.className = `message ${type}`;
+
+            output.style.display = "block";
+            if (output.timeoutId) {
+                clearTimeout(output.timeoutId);
+            }
+            output.timeoutId = setTimeout(() => {
+                output.style.display = "none";
+                output.className = "message";
+            }, 6000);
+        };*/
+        
+        document.getElementById("resetForm").addEventListener("click", () => {
+            resetDetails();
+        });
+
+        const resetDetails = () => {
+            document.getElementById("routeStopForm").reset();
+            document.getElementById("routeInput").disabled = false;
+            document.getElementById("confirmRoute").disabled = false;
+            document.getElementById("stopInput").disabled = true;
+            document.getElementById("confirmStop").disabled = true;
+            document.getElementById("AddRouteStop").disabled = true;
+        };
+    //connect display text to the ids needed for the RouteStop insert.
+    let routeMap = {}; // displayText → routeId
+    let stopMap  = {}; // stopName → stopId
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        //get route records for dropdown
+        const routeSQL = `SELECT routeId, routeName, startLocation, endLocation FROM tblRoute`;
+        const routeResult = await runQuery(routeSQL);
+
+        routeResult.data.forEach(r => {
+            const label = `${r.routeName} - ${r.startLocation} to ${r.endLocation}`;
+            routeMap[label] = r.routeId;
+        });
+
+        const routeInput = document.getElementById("routeInput");
+        const routeResults = document.getElementById("routeResults");
+        const routeIdInput = document.getElementById("routeId");
+
+        
+routeResults.addEventListener("mousedown", (event) => {
+    event.stopPropagation();
+});
+
+
+        function renderRouteDropdown(query = "") {
+            routeResults.innerHTML = "";
+
+            Object.keys(routeMap)
+                .filter(label =>
+                    label.toLowerCase().includes(query.toLowerCase())
+                )
+                .forEach(label => {
+                const row = document.createElement("div");
+                row.className = "dropdown-result";
+                row.textContent = label;
+
+               
+                row.addEventListener("mousedown", (e) => {
+                    e.preventDefault();
+                    routeInput.value = label;
+                    routeIdInput.value = routeMap[label];
+                    routeResults.innerHTML = "";
+                    });
+
+
+                routeResults.appendChild(row);
+            });
+        }
+
+        
+document.addEventListener("click", (event) => {
+    const routeForm = document.getElementById("routeForm");
+
+    if (routeForm && !routeForm.contains(event.target)) {
+        routeResults.innerHTML = "";
+    }
+});
+
+
+        routeInput.addEventListener("focus", () => {
+            renderRouteDropdown("");   // show all on click
+        });
+
+        routeInput.addEventListener("input", () => {
+            renderRouteDropdown(routeInput.value);
+        });
+
+        // Disable other buttons to start
+        document.getElementById("stopInput").disabled = true;
+        document.getElementById("confirmStop").disabled = true;
+        document.getElementById("AddRouteStop").disabled = true;
+
+        //route is confirmed - stops
+        document.getElementById("confirmRoute").addEventListener("click", async (event) => {
+            event.preventDefault();
+            //disable route input and button to prevent mismatching bus and trains.
+            document.getElementById("routeInput").disabled = true;
+            document.getElementById("confirmRoute").disabled = true;
+
+            const routeText = document.getElementById("routeInput").value;
+
+            if (!routeMap[routeText]) {
+                showMessage("Please select a valid route.", "error");
+                resetDetails();
+                return;
+            }
+
+            let stopSQL;
+            //remove stops already on the route and only show valid stop types for the route type 
+            //(bus routes can't have train stations and train routes can't have bus stops).
+            if (routeText.includes("Line")) {
+                stopSQL = `SELECT s.stopId, s.stopName FROM tblStop s WHERE s.stopType IN ('Train Station', 'Bus & Train Station') 
+                AND NOT EXISTS(SELECT 1 FROM tblRouteStop rs WHERE rs.routeId = ${routeMap[routeText]} AND rs.stopId = s.stopId)`;
+            }else{
+                stopSQL = `SELECT stopId, stopName FROM tblStop WHERE stopType IN ('Bus Stop', 'Bus & Train Station', 'Buscentre') 
+                AND NOT EXISTS(SELECT 1 FROM tblRouteStop rs WHERE rs.routeId = ${routeMap[routeText]} AND rs.stopId = tblStop.stopId)`;
+            };
+            const stopResult = await runQuery(stopSQL);
+
+            stopMap = {};
+
+            stopResult.data.forEach(s => {
+                stopMap[s.stopName] = s.stopId;
+            });
+
+            
+const stopInput = document.getElementById("stopInput");
+const stopResults = document.getElementById("stopResults");
+const stopIdInput = document.getElementById("stopId");
+
+// enable stop input now that route is confirmed
+stopInput.disabled = false;
+stopInput.value = "";
+stopIdInput.value = "";
+
+function renderStopDropdown(query = "") {
+    stopResults.innerHTML = "";
+
+    Object.keys(stopMap)
+        .filter(name => name.toLowerCase().includes(query.toLowerCase()))
+        .forEach(name => {
+            const row = document.createElement("div");
+            row.className = "dropdown-result";
+            row.textContent = name;
+
+            // ✅ mousedown prevents blur from killing click
+            row.addEventListener("mousedown", (e) => {
+                e.preventDefault();
+                stopInput.value = name;
+                stopIdInput.value = stopMap[name];
+                stopResults.innerHTML = "";
+            });
+
+            stopResults.appendChild(row);
+        });
+}
+
+// show dropdown on click
+stopInput.addEventListener("focus", () => {
+    renderStopDropdown("");
+});
+
+// filter as user types
+stopInput.addEventListener("input", () => {
+    renderStopDropdown(stopInput.value);
+});
+
+// close dropdown on click‑away (delayed)
+stopInput.addEventListener("blur", () => {
+    setTimeout(() => {
+        stopResults.innerHTML = "";
+    }, 200);
+});
+
+// enable next step
+document.getElementById("confirmStop").disabled = false;
+
+        });
+        
+        document.getElementById("confirmStop").addEventListener("click", () => {
+
+            const stopText = document.getElementById("stopInput").value;
+
+            if (!stopMap[stopText]) {
+                showMessage("Please select a valid stop.", "error");
+                resetDetails();
+                return;
+            }
+
+            //allow user to add the user route.
+            document.getElementById("AddRouteStop").disabled = false;
+            document.getElementById("stopInput").disabled = true;
+            document.getElementById("confirmStop").disabled = true;
+        });
+    });
+
+    //save the routeStop record to the database.
+    document.querySelector("#routeStopForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+      
+        //disable stop input and button to prevent input duplication/changing just the stop.
+        document.getElementById("stopInput").disabled = true;
+        document.getElementById("confirmStop").disabled = true;
+        const RouteStop = {
+            routeId: Number(document.getElementById("routeId").value),
+            stopId: Number(document.getElementById("stopId").value)
+        }
+
+        // console.log(RouteStop);
+
+        const validationMessage = await validateRouteStop(RouteStop);
+        // console.log(validationMessage);
+        if (validationMessage) {
+            showMessage(validationMessage, "error");
+            resetDetails();
+            return;
+        }
+
+       const sql = `
+           INSERT INTO tblRouteStop (stopId, routeId)
+           VALUES (
+             '${escapeSql(RouteStop.stopId)}',
+             '${escapeSql(RouteStop.routeId)}'
+           );
+       `;
+
+    //   console.log(sql);
+
+      const result = await runQuery(sql);
+
+      if (result && result.success) {
+        showMessage("RouteStop record added successfully.", "success");
+        document.querySelector("#routeStopForm").reset();
+        resetDetails();
+        return;
+      }
+
+      if (result && result.error) {
+        showMessage(result.error, "error");
+        resetDetails();
+      } else {
+        showMessage("Unable to add the record.", "error");
+        resetDetails();
+      }
+
+    });
+    </script>
+
+</body>
+
+</html>

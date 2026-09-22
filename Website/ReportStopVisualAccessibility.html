@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Report page for visual accessibility at stops -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Stops for the Visually Impaired</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility
+                            Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <div class="reportHeader">
+                <h1>The Coverage of Visually Accessible Features at Stops</h1>
+                <p><strong>Business Question:</strong> What percentage of stops provide accessibility for people with
+                    visual impairments?</p>
+                <p><strong>Why this report is useful:</strong> Helps assess how well stops support visually impaired
+                    passengers across the network, and detect pitfalls.</p>
+                <p><strong>Visual accessibility definition:</strong> Classified as visually accessible only if it has
+                    both Braille Signage and Tactile Paving.</p>
+                <p><strong id="totalFeatures">features...: </strong></p>
+                <hr>
+            </div>
+
+            <div class="reportContent">
+                <div class="reportSection" id="accessibilityNumSection">
+                    <h2>What percentage of stops are visually accessible?</h2>
+                    <br>
+                    <canvas id="accessibilityNumChart" width="1" height="1"></canvas>
+                    <br>
+                    <div id="accessibilitySummary" class="reportSummary"></div>
+                </div>
+
+                <div class="reportSection" id="accessibilityTypeSection">
+                    <h2>Which stop types provide the highest and lowest levels of visual accessibility?</h2>
+                    <br>
+                    <canvas id="accessibilityTypeChart" width="400" height="400"></canvas>
+                    <br>
+                    <p>Partial accessibility indicates the presence of either Braille Signage or Tactile Paving, but not
+                        both.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg"
+                            alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg"
+                            alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo"
+                            width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg"
+                            alt="WhatsApp logo" width="17"></a>
+                </div>
+
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/createScript.js"></script>
+
+    <script>
+        //colours
+        const ACCESSIBILITY_COLOURS = {
+            "Braille & Tactile Access": "#006B6F",
+            "Braille Signage Only": "#005B96",
+            "Tactile Paving Only": "#afca1aff",
+            "No Visual Accessibility Features": "#6B7280"
+        };
+
+        const loadFeatureCount = async () => {
+            const sql = `
+                SELECT COUNT(*) AS totalFeatures
+                FROM tblFeature
+                WHERE featureCategory = 'Stop';
+            `;
+
+            const result = await runQuery(sql.trim());
+
+            document.getElementById("totalFeatures").textContent =
+                `Number of Stop features in total: ${result.data[0].totalFeatures}`;
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadFeatureCount();
+        });
+    </script>
+
+    <script>
+
+
+
+        //load data and charts
+        const loadAccessibilityChart = async () => {
+            const sql = `
+            SELECT
+                accessibilityStatus,
+                COUNT(*) AS stopCount
+            FROM (
+                SELECT
+                    s.stopId,
+                    CASE
+                        WHEN
+                            SUM(CASE WHEN f.featureName = 'Braille Signage' THEN 1 ELSE 0 END) > 0
+                            AND
+                            SUM(CASE WHEN f.featureName = 'Tactile Paving' THEN 1 ELSE 0 END) > 0
+                        THEN 'Braille & Tactile Access'
+
+                        WHEN
+                            SUM(CASE WHEN f.featureName = 'Braille Signage' THEN 1 ELSE 0 END) > 0
+                            AND
+                            SUM(CASE WHEN f.featureName = 'Tactile Paving' THEN 1 ELSE 0 END) = 0
+                        THEN 'Braille Signage Only'
+
+                        WHEN
+                            SUM(CASE WHEN f.featureName = 'Braille Signage' THEN 1 ELSE 0 END) = 0
+                            AND
+                            SUM(CASE WHEN f.featureName = 'Tactile Paving' THEN 1 ELSE 0 END) > 0
+                        THEN 'Tactile Paving Only'
+
+                        ELSE 'No Visual Accessibility Features'
+                    END AS accessibilityStatus
+                FROM tblStop s
+                LEFT JOIN tblStopFeature sf ON s.stopId = sf.stopId
+                LEFT JOIN tblFeature f ON sf.featureId = f.featureId
+                GROUP BY s.stopId
+            ) AS stopAccessibility
+            GROUP BY accessibilityStatus;
+        `;
+
+            const result = await runQuery(sql.trim());
+            console.log("Query result:", result);
+
+            createDoughnutChart(result.data);
+            displayAccessibilitySummary(result.data);
+        };
+
+        //create chart
+        const createDoughnutChart = (data) => {
+            const labels = [];
+            const values = [];
+            const colours = [];
+
+            data.forEach(row => {
+                labels.push(row.accessibilityStatus);
+                values.push(row.stopCount);
+                colours.push(ACCESSIBILITY_COLOURS[row.accessibilityStatus]);
+            });
+
+            drawChart(labels, values, colours);
+        };
+
+        const drawChart = (labels, values, colours) => {
+            const ctx = document.getElementById("accessibilityNumChart").getContext("2d");
+
+            new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: colours
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Stop Visual Accessibility Provision"
+                        },
+                        legend: {
+                            position: "bottom"
+                        }
+                    }
+                }
+            });
+        };
+
+        //summarise percentages below
+        const displayAccessibilitySummary = (data) => {
+            const summaryDiv = document.getElementById("accessibilitySummary");
+
+            const totalStops = data.reduce((sum, row) => sum + Number(row.stopCount), 0);
+
+            let both = 0;
+            let brailleOnly = 0;
+            let tactileOnly = 0;
+            let none = 0;
+
+            data.forEach(row => {
+                if (row.accessibilityStatus === "Braille & Tactile Access") {
+                    both = Number(row.stopCount);
+                } else if (row.accessibilityStatus === "Braille Signage Only") {
+                    brailleOnly = Number(row.stopCount);
+                } else if (row.accessibilityStatus === "Tactile Paving Only") {
+                    tactileOnly = Number(row.stopCount);
+                } else if (row.accessibilityStatus === "No Visual Accessibility Features") {
+                    none = Number(row.stopCount);
+                }
+            });
+
+            const bothPercent = ((both / totalStops) * 100).toFixed(1);
+            const braillePercent = ((brailleOnly / totalStops) * 100).toFixed(1);
+            const tactilePercent = ((tactileOnly / totalStops) * 100).toFixed(1);
+            const nonePercent = ((none / totalStops) * 100).toFixed(1);
+
+            summaryDiv.innerHTML = `
+            <p><strong>Total Stops:</strong> ${totalStops}</p>
+            <p><strong>Stops with both Braille Signage and Tactile Paving:</strong> ${both} (${bothPercent}%)</p>
+            <p><strong>Stops with Braille Signage only:</strong> ${brailleOnly} (${braillePercent}%)</p>
+            <p><strong>Stops with Tactile Paving only:</strong> ${tactileOnly} (${tactilePercent}%)</p>
+            <p><strong>Stops with neither feature:</strong> ${none} (${nonePercent}%)</p>
+        `;
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadAccessibilityChart();
+        });
+    </script>
+
+
+    <script>
+        //stacked bar chart that is organised by stop type
+        const loadAccessibilityTypeChart = async () => {
+            const sql = `
+                SELECT
+                    stopType,
+                    COUNT(*) AS totalStops,
+
+                    SUM(accessibilityStatus = 'Braille & Tactile Access' COLLATE utf8mb4_unicode_ci) AS fullyAccessible,
+
+                    SUM(accessibilityStatus = 'Braille Signage Only' COLLATE utf8mb4_unicode_ci)
+                    +
+                    SUM(accessibilityStatus = 'Tactile Paving Only' COLLATE utf8mb4_unicode_ci) AS partiallyAccessible,
+
+                    SUM(accessibilityStatus = 'No Visual Accessibility Features' COLLATE utf8mb4_unicode_ci) AS notAccessible
+
+                FROM (
+                    SELECT
+                        s.stopId,
+                        s.stopType,
+                        CASE
+                            WHEN
+                                SUM(CASE WHEN f.featureName = 'Braille Signage' THEN 1 ELSE 0 END) > 0
+                                AND
+                                SUM(CASE WHEN f.featureName = 'Tactile Paving' THEN 1 ELSE 0 END) > 0
+                            THEN 'Braille & Tactile Access'
+
+                            WHEN
+                                SUM(CASE WHEN f.featureName = 'Braille Signage' THEN 1 ELSE 0 END) > 0
+                                AND
+                                SUM(CASE WHEN f.featureName = 'Tactile Paving' THEN 1 ELSE 0 END) = 0
+                            THEN 'Braille Signage Only'
+
+                            WHEN
+                                SUM(CASE WHEN f.featureName = 'Braille Signage' THEN 1 ELSE 0 END) = 0
+                                AND
+                                SUM(CASE WHEN f.featureName = 'Tactile Paving' THEN 1 ELSE 0 END) > 0
+                            THEN 'Tactile Paving Only'
+
+                            ELSE 'No Visual Accessibility Features'
+                        END AS accessibilityStatus
+                    FROM tblStop s
+                    LEFT JOIN tblStopFeature sf ON s.stopId = sf.stopId
+                    LEFT JOIN tblFeature f ON sf.featureId = f.featureId
+                    GROUP BY s.stopId, s.stopType
+                ) AS stopAccessibility
+                GROUP BY stopType
+                ORDER BY stopType;
+            `;
+
+            const result = await runQuery(sql.trim());
+            console.log("Query result:", result);
+
+            createStackedBarChart(result.data);
+        };
+
+        const createStackedBarChart = (data) => {
+            const labels = [];
+            const fully = [];
+            const partial = [];
+            const none = [];
+            const tooltipData = [];
+
+            data.forEach((row) => {
+                labels.push(row.stopType);
+                fully.push((row.fullyAccessible / row.totalStops) * 100);
+                partial.push((row.partiallyAccessible / row.totalStops) * 100);
+                none.push((row.notAccessible / row.totalStops) * 100);
+                tooltipData.push(row);
+            });
+
+            drawBarChart(labels, fully, partial, none, tooltipData);
+        };
+
+        const drawBarChart = (labels, fully, partial, none, tooltipData) => {
+            const ctx = document.getElementById("accessibilityTypeChart").getContext("2d");
+
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: "Fully Accessible",
+                            data: fully,
+                            backgroundColor: "#006B6F"
+                        },
+                        {
+                            label: "Partially Accessible",
+                            data: partial,
+                            backgroundColor: "#B7C1C7"
+                        },
+                        {
+                            label: "Not Accessible",
+                            data: none,
+                            backgroundColor: "#9CA6AD"
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: "% of Stops"
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    const row = tooltipData[context.dataIndex];
+
+                                    if (!row) return "";
+
+                                    let count;
+
+                                    if (context.dataset.label === "Fully Accessible") {
+                                        count = row.fullyAccessible;
+                                    } else if (context.dataset.label === "Partially Accessible") {
+                                        count = row.partiallyAccessible;
+                                    } else {
+                                        count = row.notAccessible;
+                                    }
+
+                                    const percent = context.raw.toFixed(1);
+
+                                    return `${context.dataset.label}: ${percent}% (${count} of ${row.totalStops} stops)`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: "Visual Accessibility by Stop Type"
+                        }
+                    }
+                }
+            });
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadAccessibilityTypeChart();
+        });
+    </script>
+</body>
+
+</html>

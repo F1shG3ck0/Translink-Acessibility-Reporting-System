@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stops with the Highest Number of Accessibility Complaints</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <h2>Stops with the Highest Number of Accessibility Complaints</h2>
+            <p class="muted">This report shows the 10 stops with the most accessibility issues, filtered by stop type</p>
+            <br>
+            <hr><br>
+
+            <div class="form-row">
+                <label for="stopTypeSearch">Filter by Stop Type</label>
+                <div class="input-wrapper">
+                    <div class="input-anchor">
+                        <select id="stopTypeSearch">
+                            <option value="">All Stop Types</option>
+                            <option value="Bus Stop">Bus Stop</option>
+                            <option value="Train Station">Train Station</option>
+                            <option value="Bus & Train Station">Bus & Train Station</option>
+                            <option value="Buscentre">Buscentre</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div id="tableOutput"></div>
+            <div id="output" class="message"></div>
+        </div>
+        
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+                <div class="footer__social">
+                    <a href="#"><img src="Images/facebook-v2.svg" width="17"></a>
+                    <a href="#"><img src="Images/instagram-v2.svg" width="17"></a>
+                    <a href="#"><img src="Images/x-v2.svg" width="17"></a>
+                </div>
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/createScript.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadReport();
+
+            const stopDropdown = document.getElementById("stopTypeSearch");
+            stopDropdown.addEventListener("change", () => {
+                loadReport(stopDropdown.value);
+            });
+        });
+
+        const loadReport = async (stopType = "") => {
+            const tableContainer = document.getElementById("tableOutput");
+            tableContainer.innerHTML = "<p>Updating report...</p>";
+
+            let sql = `SELECT * FROM vwStopAccessibilityComplaints WHERE totalAccessibilityComplaints > 0`;
+
+            if (stopType !== "") {
+                sql += ` AND stopType = '${escapeSql(stopType)}' `;
+            }
+
+            sql += ` ORDER BY totalAccessibilityComplaints DESC LIMIT 10;`;
+
+            const result = await runQuery(sql.trim());
+
+            if (!result || !result.data || result.data.length === 0) {
+                tableContainer.innerHTML = "<p>No accessibility complaints found for this selection.</p>";
+                return;
+            }
+
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stop Name</th>
+                            <th>Type</th>
+                            <th>Complaints</th>
+                            <th>Resolution %</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+            
+            result.data.forEach(row => {
+                html += `
+                    <tr>
+                        <td>${row.stopName}</td>
+                        <td>${row.stopType}</td>
+                        <td style="text-align: center;"><strong>${row.totalAccessibilityComplaints}</strong></td>
+                        <td>${row.resolutionRatePercentage}%</td>
+                    </tr>`;
+            });
+            
+            html += `</tbody></table>`;
+            tableContainer.innerHTML = html;
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Rosa - This page reports on hospital stops within the database system. -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Stops</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main">
+            <h2>How many transport routes include at least one stop serving a hospital?</h2>
+            <p>The table below shows Translink routes that serve one or more hospital locations, including route start and end points and a list of hospital stops within the routes</p>
+            <p>Hospital stops were identified based on stop features containing the term <em>‘hospital’</em> within our database</p>
+            <p><strong id="numHospitalStops"></strong></p><!-- insert number of hospital stops-->
+            <br>
+            <hr>
+            <!-- JavaScript builds the table and inserts it into this empty div. -->
+            <h2>Routes with Hospital Stops</h2>
+            <p><strong id="numRoutes"></strong></p>
+            <br>
+            <div id="tableOutput"></div>
+            <br>
+            <p>This report shows that a limited number of routes which currently provide direct access to hospital facilities, with many services relying on a small number of key stops such as City Hospital and Royal Victoria Hospital. This concentration may create pressure on specific routes and interchange points, particularly for users with restricted mobility or time‑critical healthcare needs. The report can therefore be used to identify opportunities where additional hospital‑serving stops or route adjustments could improve network resilience and accessibility.</p>
+            <br>
+            <!-- Success or error messages are shown here. -->
+            <div id="output" class="output"></div>
+        
+        </div>
+    
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+           
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg" alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg" alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo" width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg" alt="WhatsApp logo" width="17"></a>
+                </div>
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/createScript.js"></script>
+    <script> //script to get number of hospital stops and display it on the page
+        const hospitalStops = `SELECT COUNT(stopId) AS numHospitalStops FROM tblStopFeature WHERE featureId IN (SELECT featureId FROM tblFeature WHERE (featureName LIKE '%hospital%' AND featureCategory = 'Stop'))`;
+        runQuery(hospitalStops).then(result => {
+            //console.log("Query result:", result);
+            document.getElementById("numHospitalStops").textContent = `Number of Hospital Stops: ${result.data[0].numHospitalStops}`;
+        }).catch(error => {
+            showMessage("Failed to retrieve number of hospital stops.", "error");
+            //console.error("Query failed:", error);
+        });
+    </script>
+
+    <script>
+        // Show a success or error message below the form.
+        //now in the JS file to avoid repetition across pages
+        /*const showMessage = (text, type) => {
+            const output = document.querySelector("#output");
+            output.textContent = text;
+            output.className = `message ${type}`;
+
+            output.style.display = "block";
+            if (output.timeoutId) {
+                clearTimeout(output.timeoutId);
+            }
+            output.timeoutId = setTimeout(() => {
+                output.style.display = "none";
+                output.className = "message";
+            }, 6000);
+        };*/
+
+        const printTable = async () => {
+            const output = document.querySelector("#tableOutput");
+            output.textContent = "";
+
+            // read every row so the user can choose one to edit. - Inner joins
+            const sql = `SELECT
+                    r.*,
+                    GROUP_CONCAT(DISTINCT s.stopName ORDER BY s.stopName SEPARATOR ', ') AS hospitalStops,
+                    COUNT(DISTINCT s.stopId) AS hospitalStopCount
+                FROM tblRoute r
+                JOIN tblRouteStop rs
+                    ON r.routeId = rs.routeId
+                JOIN tblStopFeature sf
+                    ON rs.stopId = sf.stopId
+                JOIN tblStop s
+                    ON rs.stopId = s.stopId
+                JOIN tblFeature f
+                    ON sf.featureId = f.featureId
+                WHERE LOWER(f.featureName) LIKE '%hospital%'
+                AND f.featureCategory = 'Stop'
+                GROUP BY
+                    r.routeId,
+                    r.routeName,
+                    r.startLocation,
+                    r.endLocation
+                ORDER BY hospitalStopCount DESC, r.routeName;`;
+            const result = await runQuery(sql);
+            
+            //console.log("Full result:", result);
+        
+            if (!result || !result.data || result.data.length === 0) {
+                output.textContent = "No Rows Returned";
+                return;
+            }
+
+            //create table to filll with data from the database.
+            const rows = result.data;
+            document.getElementById("numRoutes").textContent = `Number of Routes with Hospital Stops: ${rows.length}`;
+            const table = document.createElement("table");
+            const headerRow = document.createElement("tr");
+            table.appendChild(headerRow);
+
+            // Create the table headings once before the feature rows are added.
+            const headings = ["Route Name", "Start Location", "End Location", "Hospital Stops", "# Stops"];
+
+            for (let heading of headings) {
+                const th = document.createElement("th");
+                th.textContent = heading;
+                headerRow.appendChild(th);
+            }
+
+            for (let row of rows) {
+                const tr = document.createElement("tr");
+
+                const tdRouteName = document.createElement("td");
+                tdRouteName.textContent = row.routeName;
+                tr.appendChild(tdRouteName);
+
+                const tdStartLocation = document.createElement("td");
+                tdStartLocation.textContent = row.startLocation;
+                tr.appendChild(tdStartLocation);
+
+                const tdEndLocation = document.createElement("td");
+                tdEndLocation.textContent = row.endLocation;
+                tr.appendChild(tdEndLocation);
+                
+                const tdHospitalStops = document.createElement("td");
+                tdHospitalStops.textContent = row.hospitalStops;
+                tr.appendChild(tdHospitalStops);
+
+                const tdHospitalStopNum = document.createElement("td");
+                tdHospitalStopNum.textContent = row.hospitalStopCount;
+                tr.appendChild(tdHospitalStopNum);
+
+                table.appendChild(tr);
+            }
+
+        output.appendChild(table);
+        };
+
+        // Set up the page when the browser has finished loading the HTML.
+        document.addEventListener("DOMContentLoaded", () => {
+            printTable();
+        });        
+    </script>
+
+</body>
+
+</html>

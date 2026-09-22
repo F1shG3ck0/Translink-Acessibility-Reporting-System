@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+  <title>Stops Without Accessible Features</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+  <div class="page">
+    <div class="banner">
+      <img src="Images/logo.jpg" class="logo">
+
+      <nav class="nav">
+        <div class="dropdown">
+          <button class="dropbtn">Add Records</button>
+          <div class="dropdown-content">
+            <a href="CreateRoute.html">Add Route</a>
+            <a href="CreateStop.html">Add Stop</a>
+            <a href="CreateFeature.html">Add Feature</a>
+            <a href="CreateVehicle.html">Add Vehicle</a>
+            <a href="CreateTrip.html">Add Trip</a>
+            <a href="CreateOperator.html">Add Operator</a>
+            <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+            <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+            <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Update Records</button>
+          <div class="dropdown-content">
+            <a href="UpdateTrip.html">Update Trip</a>
+            <a href="UpdateRoute.html">Update Route</a>
+            <a href="UpdateStop.html">Update Stop</a>
+            <a href="UpdateComplaint.html">Update Complaint</a>
+            <a href="UpdateOperator.html">Update Operator</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Delete Records</button>
+          <div class="dropdown-content">
+            <a href="DeleteFeature.html">Delete Feature</a>
+            <a href="DeleteComplaint.html">Delete Complaint</a>
+            <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+            <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+            <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Complaint Reports</button>
+          <div class="dropdown-content">
+            <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+            <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+            <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+            <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+            <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility Improvement</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Feature Reports</button>
+          <div class="dropdown-content">
+            <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+            <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+            <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+            <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+            <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Routes And Stops Reports</button>
+          <div class="dropdown-content">
+            <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+            <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+            <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Vulnerable Passenger Reports</button>
+          <div class="dropdown-content">
+            <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+            <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="main">
+      <h2 class="table-title">Which Stops are the Least Accessible?</h2>
+      <p>
+        This report identifies stops that currently have no recorded
+        accessibility features in the Translink database to demonstrate where improvements may be done.
+      </p>
+      <br />
+      <hr />
+
+      <br />
+
+      <div id="output" class="message"></div>
+
+      <!-- Table summary-->
+      <div id="table-summary"></div>
+
+      <div id="charts-section">
+        <div class="chart-container">
+
+        </div>
+        <!-- Horizontal Bar Chart -->
+        <div class="chart-box">
+          <p><strong>Least Available Features at Stops</strong></p>
+          <canvas id="horizChart"></canvas>
+        </div>
+
+      </div>
+
+
+
+      <!-- Table list of all inaccessible stops-->
+      <div id="stop-list-section"></div>
+    </div>
+
+    <!-- Footer-->
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo" />
+        </div>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/TranslinkNI"><img src="Images/facebook-v2.svg" width="17"
+              alt="Facebook" /></a>
+          <a href="https://www.instagram.com/translinkni"><img src="Images/instagram-v2.svg" width="17"
+              alt="Instagram" /></a>
+          <a href="https://twitter.com/TranslinkNI"><img src="Images/x-v2.svg" width="17" alt="X / Twitter" /></a>
+          <a href="https://wa.me/447583122646"><img src="Images/whatsapp-v2.svg" width="17" alt="WhatsApp" /></a>
+        </div>
+        <div class="footer__slogan">
+          <span class="footer__slogan-title">Better Connected</span>
+          <span>Accessible, Inclusive and Green</span>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy;2026 Translink</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/createScript.js"></script>
+  <script>
+    // Show a success or error message below the form. - in js file now
+
+    const loadReport = async () => {
+
+      //Business Question: Which Stops are the least accessible?
+      //Why this report is useful: Highlights to the user the difference between accessible and inaccessible stops, therefore demonstrating the improvements that should be made to the stops.
+      //Tables used: tblStop, tblStopFeature
+      const sql1 =
+        // calculation = inaccessibleStops = totalStops − accessibleStops
+        "SELECT COUNT(DISTINCT s.stopId) AS totalStops, COUNT(DISTINCT sf.stopId) AS accessibleStops, COUNT(DISTINCT s.stopId) - COUNT(DISTINCT sf.stopId) AS inaccessibleStops FROM tblStop s LEFT JOIN tblStopFeature sf ON s.stopId = sf.stopId";
+      const result1 = await runQuery(sql1);
+
+      if (!result1 || !result1.data || result1.data.length === 0) {
+        showMessage("No data returned.", "error");
+        return;
+      }
+
+      const row = result1.data[0];
+
+      const summaryContainer = document.getElementById("table-summary");
+      summaryContainer.innerHTML = "";
+
+      const table = document.createElement("table");
+
+      const headings = [
+        "Total Stops",
+        "Accessible Stops",
+        "Inaccessible Stops",
+      ];
+
+      // Header row
+      const headerRow = document.createElement("tr");
+      for (let heading of headings) {
+        const th = document.createElement("th");
+        th.textContent = heading;
+        headerRow.appendChild(th);
+      }
+      table.appendChild(headerRow);
+      const values = [
+        row.totalStops,
+        row.accessibleStops,
+        row.inaccessibleStops,
+      ];
+      // Value row
+      const valueRow = document.createElement("tr");
+      for (let value of values) {
+        const td = document.createElement("td");
+        td.textContent = value;
+        valueRow.appendChild(td);
+      }
+      table.appendChild(valueRow);
+
+      summaryContainer.appendChild(table);
+
+      // output
+      summaryContainer.innerHTML = "";
+      summaryContainer.appendChild(table);
+
+      const sql3 =
+        // Tables used: tblStop, tblStopFeature
+        "SELECT s.stopName, s.stopType FROM tblStop s LEFT JOIN tblStopFeature sf ON s.stopId = sf.stopId WHERE sf.featureId IS NULL ORDER BY s.stopName ASC";
+      const res3 = await runQuery(sql3);
+      const zeroStops = res3.data;
+
+      // Tables used: tblFeature, tblStopFeature
+      const sql2 =
+        "SELECT f.featureName, COUNT(sf.stopId) AS stopCount FROM tblFeature f LEFT JOIN tblStopFeature sf ON f.featureId = sf.featureId WHERE f.featureCategory = 'Stop' GROUP BY f.featureId, f.featureName ORDER BY stopCount DESC";
+      const result2 = await runQuery(sql2);
+      const featureLabels = [];
+      const featureCounts = [];
+
+      for (let row of result2.data) {
+        featureLabels.push(row.featureName);
+        featureCounts.push(row.stopCount);
+      }
+
+      //sql2 - this shows the horizontal bar chart
+      const chartCanvas = document.querySelector("#horizChart");
+
+      //the .slice().reverse() function allows me to reverse the order of my bar chart
+      new Chart(chartCanvas, {
+        type: "bar",
+        data: {
+          labels: featureLabels.slice().reverse(),
+          datasets: [
+            {
+              label: "Stops with this feature",
+              data: featureCounts.slice().reverse(),
+              backgroundColor: "#afca1aff",
+              borderColor: "#afca1aff",
+              borderWidth: 3,
+            },
+          ],
+        },
+        options: {
+          //use why to make my bar chart horizontal
+          indexAxis: "y",
+          responsive: true,
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: { precision: 0 },
+            },
+          },
+        },
+      });
+
+      //table for stops with 0 ACCESSIBILITY FEATURES
+      const container = document.getElementById("stop-list-section");
+      container.textContent = "";
+      if (zeroStops.length > 0) {
+        //Create heading
+        const heading = document.createElement("h2");
+        heading.className = "table-title";
+        heading.style.fontSize = "20px";
+        heading.style.marginBottom = "25px";
+
+        heading.style.width = "90%";
+        heading.style.margin = "40px auto 20px auto";
+        heading.style.textAlign = "left";
+
+        heading.textContent = "Stops With No Accessibility Features";
+        container.appendChild(heading);
+
+        //create table
+        const table = document.createElement("table");
+        table.style.marginLeft = "auto";
+        table.style.marginRight = "auto";
+        table.style.width = "90%";
+
+        const headerRow = document.createElement("tr");
+
+        const headings = ["Stop Name", "Stop Type"];
+
+        for (let heading of headings) {
+          const th = document.createElement("th");
+          th.textContent = heading;
+          headerRow.appendChild(th);
+        }
+
+        table.appendChild(headerRow);
+
+        for (let row of zeroStops) {
+          const tr = document.createElement("tr");
+
+          const tdName = document.createElement("td");
+          tdName.textContent = row.stopName;
+          tr.appendChild(tdName);
+
+          const tdType = document.createElement("td");
+          tdType.textContent = row.stopType;
+          tr.appendChild(tdType);
+
+          table.appendChild(tr);
+        }
+
+        //A table will show when there are stops with no accessibility features and then a message will appear when the accessibility goal has been achieved for all stops
+
+        container.appendChild(table);
+      } else {
+        // Create message paragraph
+        const p = document.createElement("p");
+        p.textContent =
+          "All stops have at least one accessibility feature assigned. All stops are accessible!";
+        container.appendChild(p);
+      }
+
+    };
+
+    document.addEventListener("DOMContentLoaded", loadReport);
+  </script>
+</body>
+
+</html>

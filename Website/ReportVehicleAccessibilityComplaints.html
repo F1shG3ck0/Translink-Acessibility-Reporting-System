@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles with Accessibility Complaints</title>
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="page">
+        <div class="banner">
+            <img src="Images/logo.jpg" class="logo">
+
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropbtn">Add Records</button>
+                    <div class="dropdown-content">
+                        <a href="CreateRoute.html">Add Route</a>
+                        <a href="CreateStop.html">Add Stop</a>
+                        <a href="CreateFeature.html">Add Feature</a>
+                        <a href="CreateVehicle.html">Add Vehicle</a>
+                        <a href="CreateTrip.html">Add Trip</a>
+                        <a href="CreateOperator.html">Add Operator</a>
+                        <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+                        <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+                        <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Update Records</button>
+                    <div class="dropdown-content">
+                        <a href="UpdateTrip.html">Update Trip</a>
+                        <a href="UpdateRoute.html">Update Route</a>
+                        <a href="UpdateStop.html">Update Stop</a>
+                        <a href="UpdateComplaint.html">Update Complaint</a>
+                        <a href="UpdateOperator.html">Update Operator</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Delete Records</button>
+                    <div class="dropdown-content">
+                        <a href="DeleteFeature.html">Delete Feature</a>
+                        <a href="DeleteComplaint.html">Delete Complaint</a>
+                        <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+                        <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+                        <a href="DeleteVehicleFeature.html">Delete Feature from Vehicle</a>
+                    </div>
+                </div>
+
+
+                <div class="dropdown">
+                    <button class="dropbtn">Complaint Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportResolvedComplaintsOverTime.html">Resolved Complaints Over Time</a>
+                        <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html">Routes With Most Complaints</a>
+                        <a href="ReportVehicleAccessibilityComplaints.html">Vehicles With Most Complaints</a>
+                        <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+                        <a href="ReportPriorityAccessibilityStops.html">Prioritised Stops for Accessibility
+                            Improvement</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Feature Reports</button>
+                    <div class="dropdown-content">
+                        <a href="ReportVehicleFeatures.html">Features Available On Each Vehicle</a>
+                        <a href="Rosa_StopFeatures.html">Features Available At Each Stop</a>
+                        <a href="ReportStopVisualAccessibility.html">Visually Accessible Stops</a>
+                        <a href="Rosa_WheelAccessiblePerecentage.html">Wheelchair Accessible Vehicles</a>
+                        <a href="Lucia_StopsWithoutAccessibleFeatures.html">Least Available Features At Stops</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Routes And Stops Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+                        <a href="ReportAccessibleRoutes.html">Routes With Accessible Stops</a>
+                        <a href="ReportAccessibleStops.html">Stops With Accessiblility Features</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Vulnerable Passenger Reports</button>
+                    <div class="dropdown-content">
+                        <a href="Lucia_ReportVulnerablePassengers.html">Travel Trends For Vulnerable Passengers</a>
+                        <a href="ReportRouteDisabledPassengers.html">Routes Used Most By Vulnerable Passengers</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="main">
+            <h2>What vehicles are related to accessibility complaints?</h2>
+            <p class="muted">
+                Displays the top 5 vehicles with the highest number of accessibility complaints.
+
+                <br>
+                Helps indicate whether certain vehicle types may be linked to higher levels of accessibility complaints.
+                <br>
+                Use the filter to view results for all vehicles, buses, or trains.
+            </p>
+            <br>
+            <hr><br>
+
+            <div class="form-row">
+                <label for="vehicleSearchType">Filter by Vehicle Type</label>
+                <div class="input-wrapper">
+                    <div class="input-anchor">
+                        <select id="vehicleSearchType">
+                            <option value="">All Vehicle Types</option>
+                            <option value="Bus">Bus</option>
+                            <option value="Train">Train</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div id="tableOutput"></div>
+            <div id="output" class="message"></div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <img src="Images/logo.jpg" alt="Translink logo" class="footer__logo">
+                </div>
+
+                <div class="footer__social" aria-label="Social media links">
+                    <a href="https://www.facebook.com/TranslinkNI" title="Facebook"><img src="Images/facebook-v2.svg"
+                            alt="Facebook logo" width="17"></a>
+                    <a href="https://www.instagram.com/translinkni" title="Instagram"><img src="Images/instagram-v2.svg"
+                            alt="Instagram logo" width="17"></a>
+                    <a href="https://twitter.com/TranslinkNI" title="X"><img src="Images/x-v2.svg" alt="X logo"
+                            width="17"></a>
+                    <a href="https://wa.me/447583122646" title="WhatsApp"><img src="Images/whatsapp-v2.svg"
+                            alt="WhatsApp logo" width="17"></a>
+                </div>
+
+                <div class="footer__slogan">
+                    <span class="footer__slogan-title">Better Connected</span>
+                    <span>Accessible, Inclusive and Green</span>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>@2026 Translink</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/createScript.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const vehicleDropdown = document.getElementById("vehicleSearchType");
+
+            loadReport();
+
+            vehicleDropdown.addEventListener("change", () => {
+                loadReport(vehicleDropdown.value);
+            });
+        });
+
+        async function loadReport(vehicleType = "") {
+            const tableContainer = document.getElementById("tableOutput");
+            const output = document.getElementById("output");
+
+            tableContainer.innerHTML = "<p>Updating report...</p>";
+            output.textContent = "";
+
+            let sql = `
+        SELECT 
+            v.vehicleId,
+            v.vehicleType,
+            COUNT(c.complaintId) AS totalAccessibilityComplaints,
+            ROUND(
+                (SUM(CASE WHEN c.isResolved = 1 THEN 1 ELSE 0 END) * 100.0) / COUNT(c.complaintId),
+                2
+            ) AS resolutionRatePercentage
+        FROM tblVehicle v
+        INNER JOIN tblTrip t ON v.vehicleId = t.vehicleId
+        INNER JOIN tblComplaint c ON t.tripId = c.tripId
+        WHERE c.complaintType = 'Accessibility'
+    `;
+
+            if (vehicleType === "Bus") {
+                sql += `
+            AND v.vehicleType IN (
+                'Metro',
+                'Glider',
+                'Foyle Metro',
+                'Goldliner',
+                'Ulsterbus',
+                'Airport Express 300'
+            )
+        `;
+            } else if (vehicleType === "Train") {
+                sql += `
+            AND v.vehicleType = 'NI Railways'
+        `;
+            }
+
+            sql += `
+        GROUP BY v.vehicleId, v.vehicleType
+        ORDER BY totalAccessibilityComplaints DESC, v.vehicleId ASC
+        LIMIT 5;
+    `;
+
+            try {
+                const result = await runQuery(sql.trim());
+
+                if (!result || !result.data || result.data.length === 0) {
+                    tableContainer.innerHTML = "<p>- No records found</p>";
+                    return;
+                }
+
+                let heading = "Top 5 Vehicles with Accessibility Complaints";
+                if (vehicleType === "Bus") {
+                    heading = "Top 5 Buses with Accessibility Complaints";
+                } else if (vehicleType === "Train") {
+                    heading = "Top 5 Trains with Accessibility Complaints";
+                }
+
+                let html = `
+            <h3>${heading}</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vehicle ID</th>
+                        <th>Vehicle Type</th>
+                        <th>Total Complaints</th>
+                        <th>Resolution %</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+                result.data.forEach(row => {
+                    html += `
+                <tr>
+                    <td>${row.vehicleId}</td>
+                    <td>${row.vehicleType}</td>
+                    <td style="text-align:center;"><strong>${row.totalAccessibilityComplaints}</strong></td>
+                    <td>${row.resolutionRatePercentage ?? 0}%</td>
+                </tr>
+            `;
+                });
+
+                html += `
+                </tbody>
+            </table>
+        `;
+
+                tableContainer.innerHTML = html;
+
+            } catch (error) {
+                console.error(error);
+                tableContainer.innerHTML = "<p>- No records found</p>";
+                output.textContent = "There was a problem loading the report.";
+            }
+        }
+    </script>

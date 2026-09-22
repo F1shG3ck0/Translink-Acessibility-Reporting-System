@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="Images/Translink-Icon.png" />
+    <title>Routes With Highest Accessibility Complaints</title>
+    <link rel="stylesheet" href="css/style.css"/>
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="banner">
+        <img src="Images/logo.jpg" class="logo" />
+
+        <nav class="nav">
+          <div class="dropdown">
+            <button class="dropbtn">Add Records</button>
+            <div class="dropdown-content">
+              <a href="CreateRoute.html">Add Route</a>
+              <a href="CreateStop.html">Add Stop</a>
+              <a href="CreateFeature.html">Add Feature</a>
+              <a href="CreateVehicle.html">Add Vehicle</a>
+              <a href="CreateTrip.html">Add Trip</a>
+              <a href="CreateOperator.html">Add Operator</a>
+              <a href="CreateRouteStop.html">Add a Stop to a Route</a>
+              <a href="CreateStopFeature.html">Add a Feature to a Stop</a>
+              <a href="CreateVehicleFeature.html">Add a Feature to a Vehicle</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Update Records</button>
+            <div class="dropdown-content">
+              <a href="UpdateTrip.html">Update Trip</a>
+              <a href="UpdateRoute.html">Update Route</a>
+              <a href="UpdateStop.html">Update Stop</a>
+              <a href="UpdateComplaint.html">Update Complaint</a>
+              <a href="UpdateOperator.html">Update Operator</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Delete Records</button>
+            <div class="dropdown-content">
+              <a href="DeleteFeature.html">Delete Feature</a>
+              <a href="DeleteComplaint.html">Delete Complaint</a>
+              <a href="DeleteRouteStop.html">Delete Stop from Route</a>
+              <a href="DeleteStopFeature.html">Delete Feature from Stop</a>
+              <a href="DeleteVehicleFeature.html"
+                >Delete Feature from Vehicle</a
+              >
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Complaint Reports</button>
+            <div class="dropdown-content">
+              <a href="ReportResolvedComplaintsOverTime.html"
+                >Resolved Complaints Over Time</a
+              >
+              <a href="Lucia_RoutesWithHighestAccessibilityComplaints.html"
+                >Routes With Most Complaints</a
+              >
+              <a href="ReportVehicleAccessibilityComplaints.html"
+                >Vehicles With Most Complaints</a
+              >
+              <a href="ReportStopComplaint.html">Stops With Most Complaints</a>
+              <a href="ReportPriorityAccessibilityStops.html"
+                >Prioritised Stops for Accessibility Improvement</a
+              >
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Feature Reports</button>
+            <div class="dropdown-content">
+              <a href="ReportVehicleFeatures.html"
+                >Features Available On Each Vehicle</a
+              >
+              <a href="Rosa_StopFeatures.html"
+                >Features Available At Each Stop</a
+              >
+              <a href="ReportStopVisualAccessibility.html"
+                >Visually Accessible Stops</a
+              >
+              <a href="Rosa_WheelAccessiblePerecentage.html"
+                >Wheelchair Accessible Vehicles</a
+              >
+              <a href="Lucia_StopsWithoutAccessibleFeatures.html"
+                >Least Available Features At Stops</a
+              >
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Routes And Stops Reports</button>
+            <div class="dropdown-content">
+              <a href="Rosa_Hospitals.html">Routes Serving Hospitals</a>
+              <a href="ReportAccessibleRoutes.html"
+                >Routes With Accessible Stops</a
+              >
+              <a href="ReportAccessibleStops.html"
+                >Stops With Accessiblility Features</a
+              >
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">Vulnerable Passenger Reports</button>
+            <div class="dropdown-content">
+              <a href="Lucia_ReportVulnerablePassengers.html"
+                >Travel Trends For Vulnerable Passengers</a
+              >
+              <a href="ReportRouteDisabledPassengers.html"
+                >Routes Used Most By Vulnerable Passengers</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+
+    <div class="main">
+      <h2 class="table-title">
+        Which routes have the highest accessibility complaints?
+      </h2>
+      <p>
+        This report identifies routes with the most accessibility related
+        complaints and breaks them down into resolved and unresolved cases to
+        highlight problem areas.
+      </p>
+      <br />
+      <hr />
+      <br />
+
+      <div id="output" class="message"></div>
+
+      <!-- Summary table -->
+      <div id="table-summary"></div>
+      <!-- drop down- center gap is needed for it to be separated -->
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 16px;
+          margin-top: 24px;
+        "
+      >
+        <label for="limitSelect"><strong>Show top:</strong></label>
+
+        <select id="limitSelect">
+          <option value="5">5 routes</option>
+          <option value="10" selected>10 routes</option>
+          <option value="20">20 routes</option>
+        </select>
+        <button id="applyFilter">Apply</button>
+      </div>
+      <!-- Chart section -->
+      <div id="charts-section">
+        <div class="chart-container">
+          <div class="chart-box">
+            <p>
+              <strong id="chartTitle"></strong>
+            </p>
+            <p>
+              You can also select the Resolved or Unresolved button to view the
+              bar chart for the opposite complaint status.
+            </p>
+            <!-- Chart.js will draw the filtered bar chart inside this canvas. -->
+            <canvas id="complaintRouteChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed complaint table -->
+      <div id="complaint-list-table"></div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img
+            src="Images/logo.jpg"
+            alt="Translink logo"
+            class="footer__logo"
+          />
+        </div>
+        <div class="footer__social" aria-label="Social media links">
+          <a href="https://www.facebook.com/TranslinkNI" title="Facebook"
+            ><img src="Images/facebook-v2.svg" alt="Facebook logo" width="17"
+          /></a>
+          <a href="https://www.instagram.com/translinkni" title="Instagram"
+            ><img src="Images/instagram-v2.svg" alt="Instagram logo" width="17"
+          /></a>
+          <a href="https://twitter.com/TranslinkNI" title="X"
+            ><img src="Images/x-v2.svg" alt="X logo" width="17"
+          /></a>
+          <a href="https://wa.me/447583122646" title="WhatsApp"
+            ><img src="Images/whatsapp-v2.svg" alt="WhatsApp logo" width="17"
+          /></a>
+        </div>
+        <div class="footer__slogan">
+          <span class="footer__slogan-title">Better Connected</span>
+          <span>Accessible, Inclusive and Green</span>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy;2026 Translink</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/createScript.js"></script>
+    <script>
+//show message defined on js
+
+      // Clear any old message so the page does not show stale feedback.
+      const clearMessage = () => {
+        const output = document.querySelector("#output");
+        output.textContent = "";
+        output.className = "message";
+      };
+      let chartInstance = null;
+
+      //10 is default value
+      const loadReport = async (limit = 10) => {
+        //notes for report sql 
+        // This report identifies routes with the highest number of accessibility-related complaints.
+        // It helps to understand which routes require accessibility improvements
+        // by comparing resolved and unresolved complaints per route.
+        // Tables used: tblComplaint, tblRoute, tblTrip, tblRouteStop
+        const sql = `SELECT * FROM vw_RouteAccessibilityComplaints LIMIT ${limit}`;
+
+        const result = await runQuery(sql);
+
+        if (!result || !result.data) {
+          showMessage(
+            "No accessibility data found.",
+            "error",
+          );
+          return;
+        }
+
+        clearMessage();
+        document.getElementById("chartTitle").textContent =
+          `Top ${limit} Routes with Most Complaints (Resolved vs Unresolved)`;
+
+        const rows = result.data;
+
+        //if (rows && rows.length > 0) {
+        //  console.log("Sample Row:", rows[0]);
+        // }
+
+        if (rows.length === 0) {
+          showMessage("No data can be returned.", "error");
+          return;
+        }
+
+        // 1. Summary Table
+        const summaryContainer = document.getElementById("table-summary");
+        summaryContainer.innerHTML = "";
+        // Start our counters at zero
+        let totalAll = 0;
+        let totalResolved = 0;
+        let totalUnresolved = 0;
+
+        for (let r of rows) {
+          totalAll += Number(r.totalComplaints);
+          totalResolved += Number(r.resolvedComplaints);
+          totalUnresolved += Number(r.unresolvedComplaints);
+        }
+
+        const table = document.createElement("table");
+
+        const headings = [
+          "Total Complaints about Routes",
+          "Resolved",
+          "Unresolved",
+        ];
+
+        // Header row
+        const headerRow = document.createElement("tr");
+        for (let heading of headings) {
+          const th = document.createElement("th");
+          th.textContent = heading;
+          headerRow.appendChild(th);
+        }
+        table.appendChild(headerRow);
+
+        // Use the calculated totals here instead of row.totalComplaints
+        const values = [totalAll, totalResolved, totalUnresolved];
+
+        // Value row
+        const valueRow = document.createElement("tr");
+        for (let value of values) {
+          const td = document.createElement("td");
+          td.textContent = value;
+          valueRow.appendChild(td);
+        }
+        table.appendChild(valueRow);
+
+        summaryContainer.appendChild(table);
+
+        // 2.  Chart.js
+        const labels = [];
+        const resolvedData = [];
+        const unresolvedData = [];
+
+        for (let row of rows) {
+          labels.push(row.routeName);
+          resolvedData.push(row.resolvedComplaints);
+          unresolvedData.push(row.unresolvedComplaints);
+        }
+
+        if (chartInstance) {
+          chartInstance.destroy();
+        }
+        chartInstance = new Chart(
+          document.querySelector("#complaintRouteChart"),
+          {
+            type: "bar",
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: "Resolved",
+                  data: resolvedData,
+                  backgroundColor: "#afca1aff",
+                  borderWidth: 1,
+                },
+                {
+                  label: "Unresolved",
+                  data: unresolvedData,
+                  backgroundColor: "#d32f2f",
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              indexAxis: "y",
+              responsive: true,
+
+              scales: {
+                x: {
+                  stacked: true,
+                  beginAtZero: true,
+                },
+                y: { stacked: true },
+              },
+            },
+          },
+        );
+
+        // 3. Detailed Table
+        const container = document.getElementById("complaint-list-table");
+        container.textContent = ""; // Clear existing content
+
+        if (rows.length > 0) {
+          //Create the headers
+          const heading = document.createElement("h2");
+          heading.className = "table-title";
+          heading.style.fontSize = "20px";
+          heading.textContent = "Complaint Breakdown by Route";
+          container.appendChild(heading);
+
+          const subHeading = document.createElement("p");
+          subHeading.style.marginBottom = "15px";
+          subHeading.textContent = "From Most Complaints to Least Complaints";
+          container.appendChild(subHeading);
+
+          // Create Table
+          const table = document.createElement("table");
+
+          //Create Header Row
+          const headerRow = document.createElement("tr");
+          const headings = ["Route Name", "Total", "Resolved", "Unresolved"];
+
+          for (let h of headings) {
+            const th = document.createElement("th");
+            th.textContent = h;
+            headerRow.appendChild(th);
+          }
+
+          table.appendChild(headerRow);
+
+          //Creates the rows
+          for (let row of rows) {
+            const tr = document.createElement("tr");
+
+            const tdName = document.createElement("td");
+            tdName.textContent = row.routeName;
+            tr.appendChild(tdName);
+
+            const tdTotal = document.createElement("td");
+            tdTotal.textContent = row.totalComplaints;
+            tr.appendChild(tdTotal);
+
+            const tdResolved = document.createElement("td");
+            tdResolved.textContent = row.resolvedComplaints;
+            tr.appendChild(tdResolved);
+
+            const tdUnresolved = document.createElement("td");
+            tdUnresolved.textContent = row.unresolvedComplaints;
+            tr.appendChild(tdUnresolved);
+
+            table.appendChild(tr);
+          }
+
+          container.appendChild(table);
+        } else {
+          // If no complaints are made about the routes
+          const p = document.createElement("p");
+          p.textContent = "No complaint data related to routes can be found.";
+          container.appendChild(p);
+        }
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadReport(); // default load
+
+        document.getElementById("applyFilter").addEventListener("click", () => {
+          const limit = document.getElementById("limitSelect").value;
+          loadReport(limit);
+        });
+      });
+    </script>
+  </body>
+</html>
